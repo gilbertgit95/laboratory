@@ -1,2 +1,2 @@
 # laboratory
-A random testing repository and notes.
+A random notebook and testing repository.
