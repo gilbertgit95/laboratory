@@ -5,6 +5,7 @@ package manager by default is included when installing node.js
 npm init -y or npm init -y
 
 #package installation
+npm install // this will install all packages listed inside package.json
 npm install --save <package-name> or npm i -s <package-name> // local installation then register to package.json
 npm install --save -g <package-name> // global installation
 npm install --save-dev <package-name> // local installation in development then register to package.json

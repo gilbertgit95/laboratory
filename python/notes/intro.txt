@@ -1,0 +1,30 @@
+____package manager (PIP)____
+package manager by default is included when installing python
+
+#package installation
+
+#uninstall package
+
+
+____package manager (Pipenv)____
+this is the recommended package manager to use in python, thing will be much simplier with pipenv
+
+#initalization
+make sure the python Scripts and site-packages is included in the environmental variable path then,
+this folders is loacated inside /AppData/Roaming/Python
+pip3 install pipenv // this will be installed globally
+
+#initialization and virtual environment
+pipenv shell // this will create virtual environment for the app
+exit // this will exit the virtual environment
+
+#package installation
+pipenv install // this will install all packages listed inside Pipfile
+pipenv install <package-name> // this will install the package inside the virtual environment then register it inside pipfile
+
+#uninstall package
+pipenv uninstall <package-name>
+
+#pipenv more info
+pipenv -h
+
