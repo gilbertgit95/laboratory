@@ -1,0 +1,17 @@
+____package manager (NPM)____
+package manager by default is included when installing node.js
+
+#initalization
+npm init -y or npm init -y
+
+#package installation
+npm install --save <package-name> or npm i -s <package-name> // local installation then register to package.json
+npm install --save -g <package-name> // global installation
+npm install --save-dev <package-name> // local installation in development then register to package.json
+
+#uninstall package
+npm uninstall --save <package-name>
+
+#automation and execution
+inside package.json, there is a property name scripts that can be use to create custom automation script
+npm run <script-name>
