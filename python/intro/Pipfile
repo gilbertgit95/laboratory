@@ -7,5 +7,9 @@ name = "pypi"
 
 [dev-packages]
 
+[scripts]
+start = "python main.py"
+dev = "nodemon main.py"
+
 [requires]
 python_version = "3.9"
