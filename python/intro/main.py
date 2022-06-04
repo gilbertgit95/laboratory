@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 
-import utils.encryptionHandler as ncryH
+import utils.encryptionHandler as cryptH
 import utils.fileHandler as fileH
 
 load_dotenv()
@@ -16,8 +16,11 @@ load_dotenv()
 # str()
 # age = input('enter you age: ')
 # print('So you are born on the year ' + str(2022 - int(age)))
-ncryH.btoa('test I')
-ncryH.atob('test II')
+hash = cryptH.btoa('test I')
+print(f'decrypt: { cryptH.atob(hash) }')
+
+hashedP = cryptH.hash_password('passtest')
+print(f'{ hashedP }: { cryptH.compare_text_to_hash("passtest", hashedP) }')
 
 fileH.list_files('list')
 
