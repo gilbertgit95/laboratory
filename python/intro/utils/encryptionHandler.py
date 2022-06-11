@@ -18,3 +18,11 @@ def hash_password(pswd):
 def compare_text_to_hash(text, hash):
     return bcrypt.checkpw(text.encode(), hash.encode())
 
+# generate jwt
+def generateJWT(obj):
+    return ''
+
+# verify if the jwtis still bal
+def verifyJWT(jwt) :
+    return "" 
+
