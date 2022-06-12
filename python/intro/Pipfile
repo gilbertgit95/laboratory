@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 python-dotenv = "*"
 bcrypt = "*"
+pyjwt = {extras = ["crypto"], version = "*"}
 
 [dev-packages]
 

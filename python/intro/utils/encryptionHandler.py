@@ -1,7 +1,12 @@
 import os
 import base64
 import bcrypt
+import jwt
 from datetime import datetime, timedelta
+
+jwtAlgorithm = 'HS256'
+jwtSecret = os.getenv('JWT_SECRET_KEY') if os.getenv('JWT_SECRET_KEY') else 'secret_key'
+jwtExp = int(os.getenv('JWT_EXPIRATION')) if os.getenv('JWT_EXPIRATION') else 24
 
 # encode text to base 64
 def btoa(text):
@@ -21,21 +26,19 @@ def compare_text_to_hash(text, hash):
 
 # generate jwt
 def generateJWT(obj):
-    hours = 24 # default is 24 hours
-    envExp = os.getenv('JWT_EXPIRATION')
+    obj['exp'] = datetime.now() + timedelta(hours=jwtExp)
+    return jwt.encode(obj, jwtSecret, algorithm=jwtAlgorithm)
 
-    if (envExp):
-        hours = int(envExp)
+# decode jwt string to extract encrypted obj
+def decodeJWT(token):
+    decodedToken = {}
 
-    expTime = datetime.now() + timedelta(hours=hours)
-    obj['exp'] = expTime
+    try:
+        decodedToken = jwt.decode(token, jwtSecret, algorithms=jwtAlgorithm)
+    except jwt.ExpiredSignatureError:
+        decodedToken = { 'error': 'Token expired. Get new one' }
+    except jwt.InvalidTokenError:
+        decodedToken = { 'error': 'Invalid Token' }
 
-    print(expTime)
-    print(obj)
-
-    return ''
-
-# verify if the jwtis still bal
-def verifyJWT(jwt) :
-    return "" 
+    return decodedToken
 

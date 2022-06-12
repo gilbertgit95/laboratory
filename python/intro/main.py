@@ -24,10 +24,12 @@ load_dotenv()
 # hashedP = cryptH.hash_password('passtest')
 # print(f'{ hashedP }: { cryptH.compare_text_to_hash("passtest", hashedP) }')
 
-cryptH.generateJWT({
+jwtTok = cryptH.generateJWT({
     'name': 'gilbert',
     'uuid': 'abscd123'
 })
+print(jwtTok)
+cryptH.decodeJWT(jwtTok)
 
 
 
