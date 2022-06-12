@@ -1,6 +1,7 @@
 import os
 import base64
 import bcrypt
+from datetime import datetime, timedelta
 
 # encode text to base 64
 def btoa(text):
@@ -20,6 +21,18 @@ def compare_text_to_hash(text, hash):
 
 # generate jwt
 def generateJWT(obj):
+    hours = 24 # default is 24 hours
+    envExp = os.getenv('JWT_EXPIRATION')
+
+    if (envExp):
+        hours = int(envExp)
+
+    expTime = datetime.now() + timedelta(hours=hours)
+    obj['exp'] = expTime
+
+    print(expTime)
+    print(obj)
+
     return ''
 
 # verify if the jwtis still bal
