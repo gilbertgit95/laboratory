@@ -1,5 +1,11 @@
+import os
+import glob
+
+
 def list_files(dir):
-    print(dir)
+    currDir = os.getcwd()
+    files = glob.glob(currDir + '\*')
+    print(files)
     return []
 
 def createFile():
