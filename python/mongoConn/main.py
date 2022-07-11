@@ -6,18 +6,31 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def getCli():
+    collection = 'logs'
     mongURL = os.getenv('MONGO_URL')
     mongoDB = os.getenv('MONGO_DB')
 
     mongoCli = pymongo.MongoClient(mongURL)
+
+    if mongoDB in mongoCli.list_database_names():
+        print("The database exists.")
+    else:
+        print("The database does not exist.")
+        return
+
     db = mongoCli[mongoDB]
-    logs = db['logs']
 
-    return logs
+    if collection in db.list_collection_names():
+        print("The collection exists.")
+    else:
+        print("The collection does not exist.")
+        return
 
-def fetchLogs():
+    return db[collection]
+
+def fetchLogs(filter = {}):
     cli = getCli()
-    logs = cli.find()
+    logs = cli.find(filter)
     result = []
 
     for log in logs:
