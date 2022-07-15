@@ -1,4 +1,9 @@
 import utils.fileHandler as fh
 
-files = fh.listFiles('/excelFiles')
+acceptableFiles = { 'xls', 'xlsx', 'csv' }
+
+print(acceptableFiles.issubset('xls'))
+# print(acceptableFiles['xls'])
+
+files = fh.listDirFiles('/excelFiles')
 print('files: ', files)
