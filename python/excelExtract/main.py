@@ -10,11 +10,16 @@ files = fh.listDirFiles('/excelFiles')
 print('files: ', files)
 
 # Give the location of the file
-loc = files[1]
+loc1 = files[1]
+# loc2 = files[2]
  
 # To open Workbook
-wb = xlrd.open_workbook(loc)
-sheet = wb.sheet_by_index(0)
+wb1 = xlrd.open_workbook(loc1)
+# wb2 = xlrd.open_workbook(loc2)
+
+sheet1 = wb1.sheet_by_index(0)
+# sheet2 = wb2.sheet_by_index(0)
  
 # For row 0 and column 0
-print(sheet.cell_value(0, 0))
+print(sheet1.cell_value(0, 0))
+# print(sheet2.cell_value(0, 0))
