@@ -1,0 +1,271 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="jumbotron jumbotron-fluid"
+         style="background-image: url({% static 'assets/wallpaper2.png' %});">
+        <div class="container"
+            style="color: rgb(109, 49, 8);">
+            <div class="row" style="margin-bottom: 20px;">
+                <a style="margin: 10px;"  class="btn" href="{{ back_path }}">
+                    <i class="fa fa-angle-left"></i>
+                    <span>back</span>
+                </a>
+                <button id="save_btn" style="margin: 10px;" class="btn btn-warning">
+                    <i class="fa fa-save"></i>
+                    <span>save</span>
+                </button>
+            </div>
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-md-2" style="text-align: right;"><h4>Name</h4></div>
+                <div class="col-md-10">
+                    <input type="text"
+                        class="form-control"
+                        id="name_form"
+                        value="{{ pokemon.name }}"
+                        placeholder="">
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-md-2" style="text-align: right;"><h4>Image</h4></div>
+                <div class="col-md-10">
+                    <input type="text"
+                        class="form-control"
+                        id="image_form"
+                        value="{{ pokemon.image }}"
+                        placeholder="">
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-md-2" style="text-align: right;"><h4>Weight</h4></div>
+                <div class="col-md-10">
+                    <input type="number"
+                        style="width: 200px;"
+                        class="form-control"
+                        id="weight_form"
+                        value="{{ pokemon.weight }}"
+                        placeholder="">
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-md-2" style="text-align: right;"><h4>Height</h4></div>
+                <div class="col-md-10">
+                    <input type="number"
+                        style="width: 200px;"
+                        class="form-control"
+                        id="height_form"
+                        value="{{ pokemon.height }}"
+                        placeholder="">
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-md-2" style="text-align: right;"><h4>Pokemon ID</h4></div>
+                <div class="col-md-10">
+                    <input type="number"
+                        style="width: 200px;"
+                        class="form-control"
+                        id="pokeid_form"
+                        value="{{ pokemon.poke_id }}"
+                        placeholder="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="" style="margin-top: 40px;
+                                    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);">
+                    <table class="table table-borderless" style="color: #d77a2e;">
+                        <tbody style="font-size: 16pt;">
+                            <tr style="background: #f2e5c5;">
+                                <td><h4>Evolution</h4></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {% for evol in pokemon.evolution %}
+                                        <span class="btn evolution-value" style="border: 1px solid #d77a2e;">
+                                            <input class="from-control"
+                                                value="{{ evol }}"
+                                                placeholder="Enter Value"
+                                                style="width: 100px;
+                                                        border: none;
+                                                        outline: none;
+                                                        background: none;">
+                                            <button class="btn" onclick="removeParentEl(this)">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </span>
+                                    {% endfor %}
+                                    <span id="evolution_add" class="btn" style="border: 1px solid #d77a2e;">
+                                        <input class="from-control"
+                                            placeholder="Enter Value"
+                                            style="width: 100px;
+                                                    border: none;
+                                                    outline: none;
+                                                    background: none;">
+                                        <button class="btn" style="outline: none;">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody style="font-size: 16pt;">
+                            <tr style="background: #f2e5c5;">
+                                <td><h4>Abilities</h4></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {% for ability in pokemon.abilities %}
+                                        <span class="btn ability-value" style="border: 1px solid #d77a2e;">
+                                            <input class="from-control"
+                                                value="{{ ability }}"
+                                                placeholder="Enter Value"
+                                                style="width: 100px;
+                                                        border: none;
+                                                        outline: none;
+                                                        background: none;">
+                                            <button class="btn" onclick="removeParentEl(this)">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </span>
+                                    {% endfor %}
+                                    <span id="ability_add" class="btn" style="border: 1px solid #d77a2e;">
+                                        <input class="from-control"
+                                            placeholder="Enter Value"
+                                            style="width: 100px;
+                                                    border: none;
+                                                    outline: none;
+                                                    background: none;">
+                                        <button class="btn" style="outline: none;">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody style="font-size: 16pt;">
+                            <tr style="background: #f2e5c5;">
+                                <td><h4>Held Items</h4></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {% for item in pokemon.held_items %}
+                                        <span class="btn item-value" style="border: 1px solid #d77a2e;">
+                                            <input class="from-control"
+                                                value="{{ item }}"
+                                                placeholder="Enter Value"
+                                                style="width: 100px;
+                                                        border: none;
+                                                        outline: none;
+                                                        background: none;">
+                                            <button class="btn" onclick="removeParentEl(this)">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </span>
+                                    {% endfor %}
+                                    <span id="item_add" class="btn" style="border: 1px solid #d77a2e;">
+                                        <input class="from-control"
+                                            placeholder="Enter Value"
+                                            style="width: 100px;
+                                                    border: none;
+                                                    outline: none;
+                                                    background: none;">
+                                        <button class="btn" style="outline: none;">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody style="font-size: 16pt;">
+                            <tr style="background: #f2e5c5;">
+                                <td><h4>Types</h4></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {% for type in pokemon.types %}
+                                        <span class="btn type-value" style="border: 1px solid #d77a2e;">
+                                            <input class="from-control"
+                                                value="{{ type }}"
+                                                placeholder="Enter Value"
+                                                style="width: 100px;
+                                                        border: none;
+                                                        outline: none;
+                                                        background: none;">
+                                            <button class="btn" onclick="removeParentEl(this)">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </span>
+                                    {% endfor %}
+                                    <span id="type_add" class="btn" style="border: 1px solid #d77a2e;">
+                                        <input class="from-control"
+                                            placeholder="Enter Value"
+                                            style="width: 100px;
+                                                    border: none;
+                                                    outline: none;
+                                                    background: none;">
+                                        <button class="btn" style="outline: none;">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="" style="margin-top: 40px;
+                                    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);">
+                    <table class="table table-borderless" style="color: #d77a2e;">
+                        <tbody style="font-size: 16pt; color: #4b690d;">
+                            <tr style="background: #dbfa9a;">
+                                <td><h4>Statistics</h4></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table class="table table-borderless">
+                                        <thead style="font-size: 16pt;">
+                                            <tr style="font-weight: bold; color: #4b690d;">
+                                                <td>Property</td>
+                                                <td>Base Stat</td>
+                                                <td>Effort</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-size: 16pt;">
+                                            {% for poke in pokemon.stats %}
+                                                <tr class="stats-value" title="{{ poke.0 }}">
+                                                    <td>{{ poke.0 }}</td>
+                                                    <td><input class="form-control" type="number" value="{{ poke.1 }}" /></td>
+                                                    <td><input class="form-control" type="number" value="{{ poke.2 }}" /></td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form style="visibility: hidden;" id="submit_form" action="{{ action }}" method="POST">
+        <input type="text" value="" name="name" />
+        <input type="text" value="" name="image" />
+        <input type="text" value="" name="weight" />
+        <input type="text" value="" name="height" />
+        <input type="text" value="" name="pokeid" />
+        <input type="text" value="" name="abilities" />
+        <input type="text" value="" name="items" />
+        <input type="text" value="" name="types" />
+        <input type="text" value="" name="stats" />
+        <input type="text" value="" name="evolution" />
+        {% csrf_token %}
+        <button type="submit">submit</button>
+    </form>
+
+    <script type="text/javascript" src="{% static 'scripts/poke-form.js' %}"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/poke-form.css' %}" />
+{% endblock content %}

@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div style="margin-top: 40px; font-size: 18pt;">
+                    <a href="/" class="btn">
+                        <i class="fa fa-angle-left"></i>
+                        <span>Back</span>
+                    </a>
+                    <a href="/pokemons/{{ pokemon.name }}/edit" class="btn btn-warning">
+                        <i class="fa fa-edit"></i>
+                        <span>Edit</span>
+                    </a>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#confirm_modal">
+                        <i class="fa fa-trash"></i>
+                        <span>Delete</span>
+                    </button>
+                </div>
+                <div class="jumbotron"
+                     style="margin-top: 40px; background-image: url({% static 'assets/wallpaper2.png' %});">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div>
+                                <img style="width: 100%;"
+                                     alt="{{ pokemon.name }}"
+                                     src="{{ pokemon.image }}" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table table-borderless">
+                                <tbody style="font-size: 18pt;">
+                                    <tr>
+                                        <td colspan="2"><h1>{{ pokemon.name }}</h1></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Height</td>
+                                        <td>{{ pokemon.height }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>{{ pokemon.weight }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12"
+                         style="color: #d77a2e;
+                                font-size: 18pt;
+                                font-weight: 600;">Evolution</div>
+                </div>
+                <div class="row">
+                    {% for evol in pokemon.evolution_details %}
+                        <div class="col-md-4"
+                             style="padding: 10px;
+                                    color: #7b7b7b;
+                                    text-align: center;
+                                    font-size: 14pt;
+                                    font-weight: 500;">
+                            {% if evol.detail %}
+                                <div class="img-thumbnail"
+                                     style="padding: 15px;">
+                                    <img src="{{ evol.detail.image }}" alt="pokemon" />
+                                    <div>
+                                        {% if evol.is_owner %}
+                                            <div style="color: #d77a2e;">{{ evol.name }}</div>
+                                        {% else %}
+                                            <a style="color: #d77a2e; text-decoration: underline;" href="/pokemons/{{ evol.name }}/">{{ evol.name }}</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="img-thumbnail"
+                                     data-placement="bottom"
+                                     data-toggle="tooltip" title="{{ evol.name }} is not yet added to the database"
+                                     style="padding: 15px; filter: blur(4px);">
+                                    <img width="96" src="{% static 'assets/empty-icon.png' %}" alt="pokemon" />
+                                    <div>{{ evol.name }}</div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="" style="margin-top: 40px;
+                                    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);">
+                    <table class="table table-borderless" style="color: #d77a2e;">
+                        <tbody style="font-size: 16pt;">
+                            <tr style="background: #f2e5c5;">
+                                <td><h4>Abilities</h4></td>
+                            </tr>
+                            <tr>
+                                <td>{{ pokemon.abilities }}</td>
+                            </tr>
+                        </tbody>
+                        <tbody style="font-size: 16pt;">
+                            <tr style="background: #f2e5c5;">
+                                <td><h4>Held Items</h4></td>
+                            </tr>
+                            <tr>
+                                <td>{{ pokemon.held_items }}</td>
+                            </tr>
+                        </tbody>
+                        <tbody style="font-size: 16pt;">
+                            <tr style="background: #f2e5c5;">
+                                <td><h4>Types</h4></td>
+                            </tr>
+                            <tr>
+                                <td>{{ pokemon.types }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="" style="margin-top: 40px;
+                                    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);">
+                    <table class="table table-borderless" style="color: #d77a2e;">
+                        <tbody style="font-size: 16pt; color: #4b690d;">
+                            <tr style="background: #dbfa9a;">
+                                <td><h4>Statistics</h4></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table class="table table-borderless">
+                                        <thead style="font-size: 16pt;">
+                                            <tr style="font-weight: bold; color: #4b690d;">
+                                                <td>Property</td>
+                                                <td>Base Stat</td>
+                                                <td>Effort</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-size: 16pt;">
+                                            {% for poke in pokemon.stats %}
+                                                <tr>
+                                                    <td>{{ poke.0 }}</td>
+                                                    <td>{{ poke.1 }}</td>
+                                                    <td>{{ poke.2 }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="confirm_modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirmation</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Are you sure you want to remove <b>{{ pokemon.name }}</b> forever? <br />
+                    Click delete to continue...
+                </div>
+                
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button id="delete_btn" name="{{ pokemon.name }}" type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="{% static 'scripts/pokemon.js' %}"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/pokemon.css' %}" />
+{% endblock content %}

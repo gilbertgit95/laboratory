@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="jumbotron jumbotron-fluid"
+         style="background-image: url({% static 'assets/wallpaper2.png' %});">
+        <div class="container"
+            style="color: rgb(109, 49, 8);">
+            <h1>Pokemon</h1>
+            <p style="font-size: 18pt">
+                Also known as Pocket Monsters in Japan, Humans, known
+                as Pokémon Trainers, catch and train to battle each other for sport. The English slogan for the
+                franchise is "Gotta Catch 'Em All". Works within the franchise are set in the Pokémon universe.
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row controls">
+            <div class="col-md-6">
+                <input type="text"
+                    class="form-control"
+                    id="search_key"
+                    placeholder="Search by name">
+            </div>
+            <div class="col-md-4">
+                <div class="button-group" style="text-align: right;">
+                    <button type="button" class="btn btn-info" data-toggle="dropdown"><span class="fa fa-file-download"></span> Set Download Fields</button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="" data-value="name" tabIndex="-1"><input type="checkbox" checked/>&nbsp;Name</a></li>
+                        <li><a href="#" class="" data-value="created" tabIndex="-1"><input type="checkbox" checked/>&nbsp;Date Created</a></li>
+                        <li><a href="#" class="" data-value="poke_id" tabIndex="-1"><input type="checkbox" checked/>&nbsp;Poke ID</a></li>
+                        <li><a href="#" class="" data-value="height" tabIndex="-1"><input type="checkbox"/>&nbsp;Height</a></li>
+                        <li><a href="#" class="" data-value="weight" tabIndex="-1"><input type="checkbox"/>&nbsp;Weight</a></li>
+                        <li><a href="#" class="" data-value="image" tabIndex="-1"><input type="checkbox"/>&nbsp;Image</a></li>
+                        <li><a href="#" class="" data-value="abilities" tabIndex="-1"><input type="checkbox"/>&nbsp;Abilities</a></li>
+                        <li><a href="#" class="" data-value="held_items" tabIndex="-1"><input type="checkbox"/>&nbsp;Held Items</a></li>
+                        <li><a href="#" class="" data-value="evolution" tabIndex="-1"><input type="checkbox"/>&nbsp;Evolution</a></li>
+                        <li><a href="#" class="" data-value="types" tabIndex="-1"><input type="checkbox"/>&nbsp;Types</a></li>
+                        <li><a href="#" class="" data-value="stats" tabIndex="-1"><input type="checkbox"/>&nbsp;Statistics</a></li>
+                        <div class="dropdown-divider"></div>
+                        <button class="btn btn-info" id="download_btn" style="margin-left: 20px;">
+                            Download
+                        </button>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div style="text-align: right;">
+                    <button type="button"
+                            id="add_btn"
+                            class="btn btn-warning">
+                            <i class="fas fa-plus"></i>
+                            <span> Add Pokemon</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            {% for poke in pokemons %}
+                <div class="col-md-3 pokemon-box-container" title="{{ poke.name }}">
+                    <div class="pokemon-box">
+                        <div style="text-align: center;">
+                            <img alt="pokemon"
+                                  width="150"
+                                  height="150"
+                                  src="{{ poke.image }}" />
+                            </div>
+                        <div style="text-align: center;
+                                    background: #fdeedd;
+                                    height: 50px;">
+                            <span style="font-size: 18pt;">{{ poke.name }}</span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script type="text/javascript" src="{% static 'scripts/home.js' %}"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/home.css' %}" />
+{% endblock content %}

@@ -1,0 +1,58 @@
+.body {
+    font-size: 12pt;
+    color: #343a40;
+}
+
+#header {
+    background-color: #343a40;
+}
+#user-tools {
+    font-size: 13pt;
+}
+
+#user-tools > a {
+    padding: 5px;
+    border: none;
+}
+#user-tools > a:hover {
+    color: #FFCB05;
+}
+
+.module caption {
+    background-color: #a6a8a9;
+    font-size: 12pt;
+    padding: 12px;
+}
+
+.module {
+    font-size: 12pt;
+}
+
+input[type=submit] {
+    background-color: #343a40;
+}
+
+input[type=submit]:hover {
+    background-color: #a6a8a9;
+}
+
+tbody tr td, tbody tr th {
+    padding: 12px;
+    font-size: 12pt;
+    color: #343a40;
+}
+
+div.breadcrumbs {
+    background-color: #a6a8a9;
+    font-size: 12pt;
+    color: #343a40;
+}
+
+div.breadcrumbs > a {
+    padding: 10px;
+}
+
+h1 {
+    color: #462c15;
+    font-weight: 600;
+}
