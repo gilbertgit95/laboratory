@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <ul class="breadcrumb">
+            <li>Home</li>
+        </ul>
+
+        {% for products_group in products %}
+            <div class="row">
+                {% for prod in products_group %}
+                    <div class="col-md-3">
+                        {% if prod.highlighted %}
+                            <div style="border: 3px solid #ebd350;"
+                                class="img-thumbnail max-width product-item">
+                                <img class="max-width"
+                                    src="{{ prod.product_image }}" alt="product image" />
+                                <a href="/product_form"
+                                    class="prod-name max-width"
+                                    style="font-weight: bold;">
+                                    {{ prod.product_name }}
+                                </a>
+                            </div>
+                        {% else %}
+                            <div class="img-thumbnail max-width product-item">
+                                <img class="max-width"
+                                        src="{{ prod.product_image }}" alt="product image" />
+                                <a href="/product?id={{ prod.id }}" class="prod-name max-width">
+                                    {{ prod.product_name }}
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

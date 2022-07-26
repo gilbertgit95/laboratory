@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+
+{% block content %}
+    <div class="container product-wrapper product-form">
+        {% if is_new %}
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li>Add Product Form</li>
+            </ul>
+        {% else %}
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li><a href="/product?id={{ product.id }}">{{ product.product_name }}</a></li>
+                <li>Edit Product Form</li>
+            </ul>
+        {% endif %}
+
+        <div class="row">
+            <!-- information section -->
+            <div class="col-xs-12 specs">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <div class="light-color specs-label" >Product Name</div>
+                    </div>
+                    <div class="col-xs-8">
+                        <input class="light-color form-control"
+                               name="product_name"
+                               value="{{ product.product_name }}" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <div class="light-color specs-label" >Product Description</div>
+                    </div>
+                    <div class="col-xs-8">
+                        <textarea class="light-color form-control" name="product_desc">{{ product.product_desc }}</textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <div class="light-color specs-label">Product Image</div>
+                    </div>
+                    <div class="col-xs-8">
+                        <input class="light-color form-control"
+                               value="{{ product.product_image }}"
+                               name="product_image" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <div class="light-color specs-label" >Brand</div>
+                    </div>
+                    <div class="col-xs-8">
+                        <input class="light-color form-control"
+                               value="{{ product.product_brand }}"
+                               name="product_brand" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <div class="light-color specs-label" >Price</div>
+                    </div>
+                    <div class="col-xs-8">
+                        <input class="light-color form-control"
+                               value="{{ product.product_price }}"
+                               name="product_price" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <div class="light-color specs-label" >Status</div>
+                    </div>
+                    <div class="col-xs-8">
+                        <input class="light-color form-control"
+                               value="{{ product.product_status }}"
+                               name="product_status" />
+                    </div>
+                </div>
+                <!-- buttons -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button id="product_save_button" type="submit" class="btn btn-primary max-width" >Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="{% static "custom/product_form.js" %}"></script>
+    </div>
+{% endblock content %}

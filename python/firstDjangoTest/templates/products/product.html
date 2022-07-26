@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+
+{% block content %}
+    <div class="container product-wrapper">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li>{{ product.product_name }}</li>
+        </ul>
+
+        <div class="row">
+            <!-- product image section -->
+            <div class="col-md-6">
+                <img class="max-width"
+                    src="{{ product.product_image }}" alt="product image" />
+            </div>
+
+            <!-- information section -->
+            <div class="col-md-6 specs">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div>{{ product.product_desc }}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="light-color" >Product Name</div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="light-color" >{{ product.product_name }}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="light-color" >Brand</div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="light-color" >{{ product.product_brand }}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="light-color" >Price</div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="light-color" >{{ product.product_price }}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="light-color" >Status</div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="light-color" >{{ product.product_status }}</div>
+                    </div>
+                </div>
+                <!-- buutons -->
+                <div class="row">
+                    <div class="col-xs-6">
+                        <button class="btn btn-default max-width"
+                                data-toggle="modal"
+                                data-target="#remove_product_confirmation">Delete</button>
+                    </div>
+                    <div class="col-xs-6">
+                        <a href="/product_form?id={{ product.id }}" class="btn btn-default max-width" >Edit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal box -->
+        <div id="remove_product_confirmation" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Confirmation dialog</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you really want to remove the product?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="delete_button" type="button" class="btn btn-default">Confirm</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="{% static "custom/product.js" %}"></script>
+    </div>
+{% endblock content %}
