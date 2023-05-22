@@ -3,15 +3,21 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 interface Env {
-    MONGO_CONN_STR: string,
-    DEFAULT_DATA_PAGINATION: number,
-    DEFAULT_PORT: number
+    MongoConnStr: string,
+    DataPagination: number,
+    AppPort: number,
+    WebappDir: string,
+    RootWebappEndpoint: string
+    RootApiEndpoint: string
 }
 
 let env: Env = {
-    MONGO_CONN_STR: process.env.MONGO_CONN_STR? process.env.MONGO_CONN_STR: '',
-    DEFAULT_DATA_PAGINATION: Number(process.env.DEFAULT_DATA_PAGINATION),
-    DEFAULT_PORT: Number(process.env.DEFAULT_PORT)
+    MongoConnStr: process.env.MONGO_PROD_CONNSTR? process.env.MONGO_PROD_CONNSTR: '',
+    DataPagination: Number(process.env.DEFAULT_PAGINATION),
+    AppPort: Number(process.env.SERVER_PORT),
+    WebappDir: process.env.STATIC_DIR? process.env.STATIC_DIR: '',
+    RootWebappEndpoint: process.env.ROOT_STATIC_ENDPOINT? process.env.ROOT_STATIC_ENDPOINT: '',
+    RootApiEndpoint: process.env.ROOT_API_ENDPOINT? process.env.ROOT_API_ENDPOINT: '',
 }
 
 export { Env }

@@ -1,19 +1,13 @@
 import express from 'express'
-import config, { Env } from './config'
 
-const env: Env = config.env
+import config from './config'
+import routes from './routes'
+
 const app = express()
-// console.log('test')
+const env = config.env
 
-// for (let [key, val] of Object.entries(config.env)) {
-//     console.log(`${ key }: ${ val }`)
-// }
+app.use(routes)
 
-
-app.get('/', (req, res) => {
-    return res.send('Hello!')
-})
-
-app.listen(env.DEFAULT_PORT, () => {
-    console.log(`Server is running on port: ${ env.DEFAULT_PORT }`)
+app.listen(env.AppPort, () => {
+    console.log(`Server is running on port: ${ env.AppPort }`)
 })
