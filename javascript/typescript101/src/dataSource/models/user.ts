@@ -2,7 +2,9 @@ import { Schema, model } from 'mongoose'
 const { randomUUID } = require('crypto')
 
 // types
-type TLimitedTransactionType = 'sign-in' | 'pass-reset' | ''
+type TContactInfoType = 'email-address' | 'mobile-number' | 'telephone'
+type TPasswordType = 'current' | 'old'
+type TLimitedTransactionType = 'otp-signin' | 'pass-reset' | ''
 
 // create interfaces
 interface IRoleRef {
@@ -13,14 +15,24 @@ interface IRoleRef {
 interface IPassword {
     _id?: String,
     key: String,
-    retiredDate?: Date
+    type: TPasswordType,
+    disabled?: Boolean
+}
+
+interface IContactInfo {
+    _id?: String,
+    type: TContactInfoType,
+    value: String,
+    countryCode?: String,
+    disabled?: Boolean
 }
 
 interface IClientDevice {
     _id?: String,
+    countryCode?: String,
     clientInfo: String,
     lastUsageDate?: Date,
-    disabled: Boolean
+    disabled?: Boolean
 }
 
 interface ILimitedTransaction {
@@ -29,7 +41,7 @@ interface ILimitedTransaction {
     type?: TLimitedTransactionType,
     key?: Number,
     attempts: Number,
-    disabled: Boolean
+    disabled?: Boolean
 }
 
 interface IUser {
@@ -37,19 +49,14 @@ interface IUser {
     username: String,
     roles: [IRoleRef],
 
-    password: IPassword,
-    passwordHistory: IPassword[],
+    passwords: [IPassword],
 
-    email: String,
-    mobileNumber: String,
+    contactInfos: IContactInfo[],
     clientDevices: IClientDevice[],
 
-    signIn: ILimitedTransaction,
-    otpSignIn: ILimitedTransaction,
-    credReset: ILimitedTransaction,
-    globalReset: ILimitedTransaction,
+    limitedTransactions: ILimitedTransaction[],
 
-    disabled: Boolean
+    disabled?: Boolean
 }
 
 // create schemas
@@ -61,12 +68,22 @@ const RoleRefSchema = new Schema<IRoleRef>({
 const PasswordSchema = new Schema<IPassword>({
     _id: { type: String, default: () => randomUUID()},
     key: { type: String, require: true },
-    retiredDate: { type: Date, require: true }
+    type: { type: String, require: true },
+    disabled: { type: Boolean, require: false, default: false }
+}, { timestamps: true })
+
+const ContactInfoSchema = new Schema<IContactInfo>({
+    _id: { type: String, default: () => randomUUID()},
+    type: { type: String, require: true },
+    value: { type: String, require: true },
+    countryCode: { type: String, require: false },
+    disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
 const ClientDeviceSchema = new Schema<IClientDevice>({
     _id: { type: String, default: () => randomUUID()},
     clientInfo: { type: String, require: true },
+    countryCode: { type: String, require: false },
     lastUsageDate: { type: Date, require: false },
     disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
@@ -85,17 +102,12 @@ const UserSchema = new Schema<IUser>({
     username: { type: String, required: true },
     roles: { type: [RoleRefSchema], required: true },
 
-    password: { type: PasswordSchema, required: false },
-    passwordHistory: { type: [PasswordSchema], required: false },
+    passwords: { type: [PasswordSchema], required: false },
 
-    email: { type: String, required: false },
-    mobileNumber: { type: String, required: false },
+    contactInfos: { type: [ContactInfoSchema], required: false },
     clientDevices: { type: [ClientDeviceSchema], required: false },
 
-    signIn: { type: LimitedTransactionSchema, required: false },
-    otpSignIn: { type: LimitedTransactionSchema, required: false },
-    credReset: { type: LimitedTransactionSchema, required: false },
-    globalReset: { type: LimitedTransactionSchema, required: false },
+    limitedTransactions: { type: [LimitedTransactionSchema], required: false },
 
     disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
@@ -104,9 +116,11 @@ const UserSchema = new Schema<IUser>({
 const UserModel = model<IUser>('User', UserSchema)
 
 export {
+    TContactInfoType,
     TLimitedTransactionType,
     IRoleRef,
     IPassword,
+    IContactInfo,
     IClientDevice,
     ILimitedTransaction,
     IUser

@@ -15,34 +15,37 @@ router.get(env.RootApiEndpoint + 'users', async (req, res) => {
 router.post(env.RootApiEndpoint + 'users', async (req, res) => {
     let user: IUser = {
         username: 'bertwo',
-        password: {
+        passwords: [{
             key: '101',
-        },
-        passwordHistory: [
+            type: 'current'
+        }],
+        roles: [
             {
-                key: '101'
+                roleId: ''
             }
         ],
-        email: '',
-        mobileNumber: '',
-        clientDevices: [
+        contactInfos: [],
+        clientDevices: [],
+        limitedTransactions: [
             {
-                clientInfo: '',
-                lastUsageDate: new Date()
+                limit: 15,
+                type: 'otp-signin',
+                key: 0,
+                attempts: 0
+            },
+            {
+                limit: 15,
+                type: 'pass-reset',
+                key: 0,
+                attempts: 0
+            },
+            {
+                limit: 15,
+                type: '',
+                key: 0,
+                attempts: 0
             }
-        ],
-        login: {
-            limit: 15,
-            type: 'login',
-            key: 0,
-            attempts: 0
-        },
-        reset: {
-            limit: 15,
-            type: 'password-reset',
-            key: 0,
-            attempts: 0
-        }
+        ]
     }
     let savedUser = await UserModel.create(user)
     return res.json(savedUser)
