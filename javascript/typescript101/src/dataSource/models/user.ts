@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose'
-const { randomUUID } = require('crypto')
+import { randomUUID } from 'crypto'
 
 // types
 type TContactInfoType = 'email-address' | 'mobile-number' | 'telephone'
@@ -47,7 +47,7 @@ interface ILimitedTransaction {
 interface IUser {
     _id?: String,
     username: String,
-    roles: [IRoleRef],
+    roleRefs: [IRoleRef],
 
     passwords: [IPassword],
 
@@ -100,7 +100,7 @@ const LimitedTransactionSchema = new Schema<ILimitedTransaction>({
 const UserSchema = new Schema<IUser>({
     _id: { type: String, default: () => randomUUID()},
     username: { type: String, required: true },
-    roles: { type: [RoleRefSchema], required: true },
+    roleRefs: { type: [RoleRefSchema], required: true },
 
     passwords: { type: [PasswordSchema], required: false },
 

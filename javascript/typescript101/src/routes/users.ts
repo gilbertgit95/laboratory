@@ -19,7 +19,7 @@ router.post(env.RootApiEndpoint + 'users', async (req, res) => {
             key: '101',
             type: 'current'
         }],
-        roles: [
+        roleRefs: [
             {
                 roleId: ''
             }

@@ -1,4 +1,6 @@
 import { Schema, model } from 'mongoose'
+import { randomUUID } from 'crypto'
+import { timeStamp } from 'console'
 
 // Roles:
 // - App Admin - has access to all
@@ -6,18 +8,36 @@ import { Schema, model } from 'mongoose'
 // - Normal User - has access to some features
 
 // create interfaces
+interface IFeatureRef {
+    _id?: String,
+    featureId: String
+}
+
 interface IRole {
     _id?: String,
     name: String,
-    includedfeatures: []
-    excludedFeatures: []
+    includedfeatures: IFeatureRef[]
+    excludedFeatures: IFeatureRef[]
 }
 
 // create schemas
+const RoleRefSchema = new Schema<IFeatureRef>({
+    _id: { type: String, default: () => randomUUID() },
+    featureId: { type: String, required: true }
+}, { timestamps: true })
 
+const RoleSchema = new Schema<IRole>({
+    _id: { type: String, default: () => randomUUID() },
+    name: { type: String, required: true },
+    includedfeatures: { type: [RoleRefSchema], required: false },
+    excludedFeatures: { type: [RoleRefSchema], required: false },
+}, { timestamps: true })
 
 // create model
+const RoleModel = model<IRole>('Role', RoleSchema)
 
 export {
+    IFeatureRef,
     IRole
 }
+export default RoleModel
