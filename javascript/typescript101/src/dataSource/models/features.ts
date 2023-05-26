@@ -8,20 +8,20 @@ type TFeatureType = 'api-route' | 'ui-route'
 
 // create interfaces
 interface IFeature {
-    _id?: String,
-    name?: String,
+    _id?: string,
+    name?: string,
     type: TFeatureType,
-    tags?: String[],
-    value: String
+    tags?: string[],
+    value: string
 }
 
 // create schemas
 const FeatureSchema = new Schema<IFeature>({
-    _id: { type: String, default: () => randomUUID() },
-    name: { type: String, required: false },
-    type: { type: String, required: true },
-    tags: { type: [String], required: false },
-    value: { type: String, required: true }
+    _id: { type: string, default: () => randomUUID() },
+    name: { type: string, required: false },
+    type: { type: string, required: true },
+    tags: { type: [string], required: false },
+    value: { type: string, required: true }
 })
 
 // create model

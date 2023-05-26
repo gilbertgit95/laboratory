@@ -7,13 +7,13 @@ const router = express.Router()
 const env = config.env
 
 router.get(env.RootApiEndpoint + 'users', async (req, res) => {
-    let users = await UserModel.find()
+    const users = await UserModel.find()
     // console.log(users)
     return res.json(users)
 })
 
 router.post(env.RootApiEndpoint + 'users', async (req, res) => {
-    let user: IUser = {
+    const user: IUser = {
         username: 'bertwo',
         passwords: [{
             key: '101',
@@ -47,7 +47,7 @@ router.post(env.RootApiEndpoint + 'users', async (req, res) => {
             }
         ]
     }
-    let savedUser = await UserModel.create(user)
+    const savedUser = await UserModel.create(user)
     return res.json(savedUser)
 })
 

@@ -11,7 +11,7 @@ interface Env {
     RootApiEndpoint: string
 }
 
-let env: Env = {
+const env: Env = {
     MongoConnStr: process.env.MONGO_PROD_CONNSTR? process.env.MONGO_PROD_CONNSTR: '',
     DataPagination: Number(process.env.DEFAULT_PAGINATION),
     AppPort: Number(process.env.SERVER_PORT),
@@ -22,5 +22,5 @@ let env: Env = {
 
 export { Env }
 export default {
-    env: env
+    env
 }
