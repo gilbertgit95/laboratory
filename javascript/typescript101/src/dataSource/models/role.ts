@@ -22,13 +22,13 @@ interface IRole {
 
 // create schemas
 const RoleRefSchema = new Schema<IFeatureRef>({
-    _id: { type: string, default: () => randomUUID() },
-    featureId: { type: string, required: true }
+    _id: { type: String, default: () => randomUUID() },
+    featureId: { type: String, required: true }
 }, { timestamps: true })
 
 const RoleSchema = new Schema<IRole>({
-    _id: { type: string, default: () => randomUUID() },
-    name: { type: string, required: true },
+    _id: { type: String, default: () => randomUUID() },
+    name: { type: String, required: true },
     includedfeatures: { type: [RoleRefSchema], required: false },
     excludedFeatures: { type: [RoleRefSchema], required: false },
 }, { timestamps: true })

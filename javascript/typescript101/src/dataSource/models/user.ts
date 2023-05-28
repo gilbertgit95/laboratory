@@ -61,45 +61,45 @@ interface IUser {
 
 // create schemas
 const RoleRefSchema = new Schema<IRoleRef>({
-    _id: { type: string, default: () => randomUUID()},
-    roleId: { type: string, require: true }
+    _id: { type: String, default: () => randomUUID()},
+    roleId: { type: String, require: true }
 }, { timestamps: true })
 
 const PasswordSchema = new Schema<IPassword>({
-    _id: { type: string, default: () => randomUUID()},
-    key: { type: string, require: true },
-    type: { type: string, require: true },
-    disabled: { type: boolean, require: false, default: false }
+    _id: { type: String, default: () => randomUUID()},
+    key: { type: String, require: true },
+    type: { type: String, require: true },
+    disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
 const ContactInfoSchema = new Schema<IContactInfo>({
-    _id: { type: string, default: () => randomUUID()},
-    type: { type: string, require: true },
-    value: { type: string, require: true },
-    countryCode: { type: string, require: false },
-    disabled: { type: boolean, require: false, default: false }
+    _id: { type: String, default: () => randomUUID()},
+    type: { type: String, require: true },
+    value: { type: String, require: true },
+    countryCode: { type: String, require: false },
+    disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
 const ClientDeviceSchema = new Schema<IClientDevice>({
-    _id: { type: string, default: () => randomUUID()},
-    clientInfo: { type: string, require: true },
-    countryCode: { type: string, require: false },
+    _id: { type: String, default: () => randomUUID()},
+    clientInfo: { type: String, require: true },
+    countryCode: { type: String, require: false },
     lastUsageDate: { type: Date, require: false },
-    disabled: { type: boolean, require: false, default: false }
+    disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
 const LimitedTransactionSchema = new Schema<ILimitedTransaction>({
-    _id: { type: string, default: () => randomUUID()},
-    limit: { type: number, require: true },
-    type: { type: string, require: false },
-    key: { type: number, require: false },
-    attempts: { type: number, require: true },
-    disabled: { type: boolean, require: false, default: false }
+    _id: { type: String, default: () => randomUUID()},
+    limit: { type: Number, require: true },
+    type: { type: String, require: false },
+    key: { type: Number, require: false },
+    attempts: { type: Number, require: true },
+    disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
 const UserSchema = new Schema<IUser>({
-    _id: { type: string, default: () => randomUUID()},
-    username: { type: string, required: true },
+    _id: { type: String, default: () => randomUUID()},
+    username: { type: String, required: true },
     roleRefs: { type: [RoleRefSchema], required: true },
 
     passwords: { type: [PasswordSchema], required: false },
@@ -109,7 +109,7 @@ const UserSchema = new Schema<IUser>({
 
     limitedTransactions: { type: [LimitedTransactionSchema], required: false },
 
-    disabled: { type: boolean, require: false, default: false }
+    disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
 // create model

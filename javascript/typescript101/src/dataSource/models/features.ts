@@ -17,11 +17,11 @@ interface IFeature {
 
 // create schemas
 const FeatureSchema = new Schema<IFeature>({
-    _id: { type: string, default: () => randomUUID() },
-    name: { type: string, required: false },
-    type: { type: string, required: true },
-    tags: { type: [string], required: false },
-    value: { type: string, required: true }
+    _id: { type: String, default: () => randomUUID() },
+    name: { type: String, required: false },
+    type: { type: String, required: true },
+    tags: { type: [String], required: false },
+    value: { type: String, required: true }
 })
 
 // create model
