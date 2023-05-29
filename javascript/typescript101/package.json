@@ -7,7 +7,8 @@
     "start": "node build/app.js",
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
     "build": "tsc -p ./tsconfig.json",
-    "tslint": "tslint --project tsconfig.json"
+    "tslint": "tslint --project tsconfig.json",
+    "test": "jest "
   },
   "author": "Gilbert D. Cuerbo <gilbert.cuerbo@gmail.com>",
   "license": "ISC",
@@ -15,6 +16,9 @@
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.1",
     "@types/node": "^20.2.1",
+    "@types/supertest": "^2.0.12",
+    "jest": "^29.5.0",
+    "supertest": "^6.3.3",
     "ts-jest": "^29.1.0",
     "ts-node-dev": "^2.0.0",
     "tslint": "^6.1.3",
