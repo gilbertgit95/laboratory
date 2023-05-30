@@ -11,7 +11,9 @@ app.use(routes)
 
 app.listen(env.AppPort, async () => {
     try {
-        await mongoose.connect(env.MongoConnStr)
+        await mongoose.connect(env.ProdMongoURI, {
+            dbName: env.ProdDBName
+        })
         console.log(`- Successfully connected to database`)
     } catch (err) {
         console.log(`!Error, was not able to connect to the mongo database`)
