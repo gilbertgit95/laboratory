@@ -16,10 +16,10 @@ interface Env {
 
 const env: Env = {
     ProdMongoURI: process.env.PROD_MONGO_URI? process.env.PROD_MONGO_URI: '',
-    ProdDBName: process.env.PROD_DB_NAME? process.env.PROD_DB_NAME: '',
+    ProdDBName: process.env.PROD_MONGO_DB_NAME? process.env.PROD_MONGO_DB_NAME: '',
 
     TestMongoURI: process.env.TEST_MONGO_URI? process.env.TEST_MONGO_URI: '',
-    TestDBName: process.env.TEST_DB_NAME? process.env.TEST_DB_NAME: '',
+    TestDBName: process.env.TEST_MONGO_DB_NAME? process.env.TEST_MONGO_DB_NAME: '',
     
     DataPagination: Number(process.env.DEFAULT_PAGINATION),
     AppPort: Number(process.env.SERVER_PORT),
