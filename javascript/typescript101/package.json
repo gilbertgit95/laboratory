@@ -8,7 +8,7 @@
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
     "build": "tsc -p ./tsconfig.json",
     "tslint": "tslint --project tsconfig.json",
-    "test": "jest "
+    "test": "jest"
   },
   "author": "Gilbert D. Cuerbo <gilbert.cuerbo@gmail.com>",
   "license": "ISC",
