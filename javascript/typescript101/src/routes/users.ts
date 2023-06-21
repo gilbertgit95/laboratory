@@ -4,7 +4,7 @@ import UserModel, { IUser } from '../dataSource/models/user'
 import config from '../config'
 
 const router = express.Router()
-const env = config.env
+const env = config.getEnv()
 
 router.get(env.RootApiEndpoint + 'users', async (req, res) => {
     const users = await UserModel.find()

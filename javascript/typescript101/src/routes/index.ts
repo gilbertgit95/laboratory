@@ -4,7 +4,7 @@ import config from '../config'
 import users from './users'
 
 const router = express.Router()
-const env = config.env
+const env = config.getEnv()
 
 // route for webapp static files
 router.get(env.RootWebappEndpoint, express.static(env.WebappDir))
