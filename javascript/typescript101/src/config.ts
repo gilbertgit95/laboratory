@@ -34,7 +34,12 @@ function getEnv():Env {
     }
 }
 
+function setExecType(type:string):void {
+    process.env.EXEC_TYPE = type
+}
+
 export { Env }
 export default {
-    getEnv
+    getEnv,
+    setExecType
 }

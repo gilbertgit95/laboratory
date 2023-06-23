@@ -4,6 +4,9 @@ import mongoose from 'mongoose'
 import config from './config'
 import routes from './routes'
 
+// refers to production
+config.setExecType('PROD')
+
 const app = express()
 const env = config.getEnv()
 
