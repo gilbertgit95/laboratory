@@ -1,19 +1,23 @@
+import supertest from 'supertest'
+
 import {
     connectDB,
     disconnectDB,
     clearDatabase
-} from '../dbConnect'
+} from '../dataSource/dbConnect'
+import UserModel, { IUser } from '../../src/dataSource/models/user'
+import app from '../../src/app'
 
-import UserModel, { IUser } from '../../../src/dataSource/models/user'
+const request = supertest(app)
 
-describe('User Model Testing', () => {
+describe('User Route Testing', () => {
     beforeAll(async () => {
         await connectDB();
     })
 
     afterAll(async () => {
         await UserModel.collection.drop();
-        await disconnectDB();
+        await disconnectDB()
     })
 
     afterEach(async () => {
@@ -90,47 +94,12 @@ describe('User Model Testing', () => {
         ]
     }
 
-    test('User Create Test', async () => {
-        const user = new UserModel(userData)
-        const createdUser = await user.save()
+    test('POST - /api/v1/users', async () => {
+        const res = await request.post('/api/v1/users').send()
+        const body = res.body
+        const username = body.username
 
-        expect(createdUser).toBeDefined()
-        expect(createdUser.username).toBe(user.username)
-    })
-
-    test('User Read Test', async () => {
-        const user = new UserModel(userData)
-        await user.save()
-
-        const fetchedUser = await UserModel.findOne()
-
-        expect(fetchedUser).toBeDefined()
-        expect(fetchedUser).toMatchObject(userData)
-    })
-
-    test('User Update Test', async () => {
-        const user = new UserModel(userData)
-        await user.save()
-
-        const fetchedUser = await UserModel.findOne()
-        await UserModel.updateOne({
-            _id: fetchedUser && fetchedUser._id? fetchedUser._id: ''
-        }, userUpdateData)
-        const fetchedUpdatedUser = await UserModel.findOne()
-
-        expect(fetchedUpdatedUser).toBeDefined()
-        expect(fetchedUpdatedUser).toMatchObject(userUpdateData)
-        expect(fetchedUpdatedUser).not.toMatchObject(userData)
-    })
-
-    test('User Delete Test', async () => {
-        const fetchedUser = await UserModel.findOne()
-        await UserModel.deleteOne({
-            _id: fetchedUser && fetchedUser._id? fetchedUser._id: ''
-        })
-        const user = await UserModel.findOne({
-            _id: fetchedUser && fetchedUser._id? fetchedUser._id: ''
-        })
-        expect(user).toBeNull()
+        expect(res.statusCode).toBe(200)
+        expect(username).toBe(userData.username)
     })
 })
