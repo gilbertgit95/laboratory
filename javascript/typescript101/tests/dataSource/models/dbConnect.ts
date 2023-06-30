@@ -1,12 +1,13 @@
 import mongoose from 'mongoose';
 import config from '../../../src/config'
 
-const env = config.env
+config.setExecType('TEST')
+const env = config.getEnv()
 
 export async function connectDBForTesting() {
   try {
-    await mongoose.connect(env.TestMongoURI, {
-      dbName: env.TestDBName,
+    await mongoose.connect(env.MongoURI? env.MongoURI: '', {
+      dbName: env.DBName,
       autoCreate: true,
     });
   } catch (error) {
