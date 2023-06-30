@@ -3,43 +3,53 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 interface Env {
-    ExecType: string,
+    AppEnv: string,
+    AppPort: number,
+
+    DafaultPagination: number,
+    DafaultMaxLoginAttempts: number,
+    DafaultMaxResetAttempts: number,
 
     MongoURI: string | undefined,
     DBName: string | undefined,
 
-    AppPort: number,
-    WebappDir: string,
+    RootWebappDir: string,
     RootWebappEndpoint: string
     RootApiEndpoint: string,
 
-    DafaultPagination: number
+    JwtExp: number,
+    JwtSecretKey: string
 }
 
 function getEnv():Env {
-    const execType = process.env.EXEC_TYPE? process.env.EXEC_TYPE: 'PROD'
+    const appEnv = process.env.APP_ENV? process.env.APP_ENV: 'PROD'
 
     return {
-        ExecType: execType,
+        AppEnv: appEnv,
+        AppPort: Number(process.env.APP_PORT),
 
-        MongoURI: process.env[`${ execType }_MONGO_URI`]? process.env[`${ execType }_MONGO_URI`]: '',
-        DBName: process.env[`${ execType }_MONGO_DB_NAME`]? process.env[`${ execType }_MONGO_DB_NAME`]: '',
+        DafaultPagination: Number(process.env.DEFAULT_PAGINATION),
+        DafaultMaxLoginAttempts: Number(process.env.DEFAULT_MAX_LOGIN_ATTEMPTS),
+        DafaultMaxResetAttempts: Number(process.env.DEFAULT_MAX_RESET_ATTEMPTS),
 
-        AppPort: Number(process.env.SERVER_PORT),
-        WebappDir: process.env.STATIC_DIR? process.env.STATIC_DIR: '',
-        RootWebappEndpoint: process.env.ROOT_STATIC_ENDPOINT? process.env.ROOT_STATIC_ENDPOINT: '',
+        MongoURI: process.env[`${ appEnv }_MONGO_URI`]? process.env[`${ appEnv }_MONGO_URI`]: '',
+        DBName: process.env[`${ appEnv }_MONGO_DB_NAME`]? process.env[`${ appEnv }_MONGO_DB_NAME`]: '',
+
+        RootWebappDir: process.env.ROOT_WEBAPP_DIR? process.env.ROOT_WEBAPP_DIR: '',
+        RootWebappEndpoint: process.env.ROOT_WEBAPP_ENDPOINT? process.env.ROOT_WEBAPP_ENDPOINT: '',
         RootApiEndpoint: process.env.ROOT_API_ENDPOINT? process.env.ROOT_API_ENDPOINT: '',
 
-        DafaultPagination: Number(process.env.DEFAULT_PAGINATION)
+        JwtExp: Number(process.env.JWT_EXPIRATION),
+        JwtSecretKey: process.env.JWT_SECRET_KEY? process.env.JWT_SECRET_KEY: ''
     }
 }
 
-function setExecType(type:string):void {
-    process.env.EXEC_TYPE = type
+function setAppEnv(type:string):void {
+    process.env.APP_ENV = type
 }
 
 export { Env }
 export default {
     getEnv,
-    setExecType
+    setAppEnv
 }

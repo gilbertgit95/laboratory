@@ -3,9 +3,6 @@ import mongoose from 'mongoose'
 import app from './app'
 import config from './config'
 
-// refers to production
-config.setExecType('PROD')
-
 const env = config.getEnv()
 
 app.listen(env.AppPort, async () => {

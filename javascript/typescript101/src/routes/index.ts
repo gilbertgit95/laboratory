@@ -7,7 +7,7 @@ const router = express.Router()
 const env = config.getEnv()
 
 // route for webapp static files
-router.get(env.RootWebappEndpoint, express.static(env.WebappDir))
+router.get(env.RootWebappEndpoint, express.static(env.RootWebappDir))
 
 // routes for api
 router.use(users)
