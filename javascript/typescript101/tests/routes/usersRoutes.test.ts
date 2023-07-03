@@ -4,8 +4,8 @@ import {
     connectDB,
     disconnectDB,
     clearDatabase
-} from '../dataSource/dbConnect'
-import UserModel, { IUser } from '../../src/dataSource/models/user'
+} from '../dataSource/dataSourceConn'
+import UserModel, { IUser } from '../../src/dataSource/models/userModel'
 import app from '../../src/app'
 
 const request = supertest(app)

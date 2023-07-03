@@ -1,6 +1,6 @@
 import express from 'express'
 
-import UserModel, { IUser } from '../dataSource/models/user'
+import UserModel, { IUser } from '../dataSource/models/userModel'
 import config from '../config'
 
 const router = express.Router()

@@ -2,9 +2,9 @@ import {
     connectDB,
     disconnectDB,
     clearDatabase
-} from '../dbConnect'
+} from '../dataSourceConn'
 
-import UserModel, { IUser } from '../../../src/dataSource/models/user'
+import UserModel, { IUser } from '../../../src/dataSource/models/userModel'
 
 describe('User Model Testing', () => {
     beforeAll(async () => {
