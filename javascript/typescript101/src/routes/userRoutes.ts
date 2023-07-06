@@ -4,14 +4,15 @@ import UserModel, { IUser } from '../dataSource/models/userModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataRequest'
 import config from '../config'
 
+import UserControllers from '../controllers/userControllers'
+
 const router = express.Router()
 const env = config.getEnv()
 
 router.get(env.RootApiEndpoint + 'users', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
-    const userReq = new DataRequest(UserModel)
-
-    const result = await userReq.getItemsByPage({},{}, {},pageInfo)
+    
+    const result = await UserControllers.getUsers(pageInfo)
 
     return res.json(result)
 })
