@@ -5,6 +5,7 @@ dotenv.config()
 interface Env {
     AppEnv: string,
     AppPort: number,
+    AppAdminConfirmKey: string,
 
     DafaultPagination: number,
     DafaultMaxLoginAttempts: number,
@@ -27,6 +28,7 @@ function getEnv():Env {
     return {
         AppEnv: appEnv,
         AppPort: Number(process.env.APP_PORT),
+        AppAdminConfirmKey: process.env.APP_ADMIN_CONFIRM_KEY? process.env.APP_ADMIN_CONFIRM_KEY: '',
 
         DafaultPagination: Number(process.env.DEFAULT_PAGINATION),
         DafaultMaxLoginAttempts: Number(process.env.DEFAULT_MAX_LOGIN_ATTEMPTS),

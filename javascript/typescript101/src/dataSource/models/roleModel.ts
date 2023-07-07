@@ -16,6 +16,9 @@ interface IFeatureRef {
 interface IRole {
     _id?: string,
     name: string,
+    level: number,
+    description?: string,
+    absoluteAuthority?: boolean,
     includedfeatures: IFeatureRef[]
     excludedFeatures: IFeatureRef[]
 }
@@ -28,7 +31,10 @@ const RoleRefSchema = new Schema<IFeatureRef>({
 
 const RoleSchema = new Schema<IRole>({
     _id: { type: String, default: () => randomUUID() },
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
+    level: { type: Number, required: true,  unique: true },
+    description: { type: String, required: false },
+    absoluteAuthority: { type: Boolean, required: false, default: false },
     includedfeatures: { type: [RoleRefSchema], required: false },
     excludedFeatures: { type: [RoleRefSchema], required: false },
 }, { timestamps: true })

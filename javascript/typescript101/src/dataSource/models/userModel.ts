@@ -5,6 +5,7 @@ import { randomUUID } from 'crypto'
 type TContactInfoType = 'email-address' | 'mobile-number' | 'telephone'
 type TPasswordType = 'current' | 'old'
 type TLimitedTransactionType = 'otp-signin' | 'pass-reset' | ''
+type TUserInfoType = 'string' | 'number' | 'date' | 'boolean'
 
 // create interfaces
 interface IRoleRef {
@@ -27,10 +28,16 @@ interface IContactInfo {
     disabled?: boolean
 }
 
+interface IAccessToken {
+    _id?: string,
+    jwt: string
+}
+
 interface IClientDevice {
     _id?: string,
     countryCode?: string,
     clientInfo: string,
+    accessTokens?: IAccessToken[],
     lastUsageDate?: Date,
     disabled?: boolean
 }
@@ -44,10 +51,18 @@ interface ILimitedTransaction {
     disabled?: boolean
 }
 
+interface IUserInfo {
+    _id?: string,
+    key: string,
+    value: string,
+    type: TUserInfoType
+}
+
 interface IUser {
     _id?: string,
     username: string,
     roleRefs: [IRoleRef],
+    userInfo: IUserInfo[],
 
     passwords: [IPassword],
 
@@ -80,9 +95,15 @@ const ContactInfoSchema = new Schema<IContactInfo>({
     disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
+const AccessTokenSchema = new Schema<IAccessToken>({
+    _id: { type: String, default: () => randomUUID()},
+    jwt: { type: String, require: true }
+}, { timestamps: true })
+
 const ClientDeviceSchema = new Schema<IClientDevice>({
     _id: { type: String, default: () => randomUUID()},
     clientInfo: { type: String, require: true },
+    accessTokens: { type: [AccessTokenSchema], require: false },
     countryCode: { type: String, require: false },
     lastUsageDate: { type: Date, require: false },
     disabled: { type: Boolean, require: false, default: false }
@@ -97,10 +118,18 @@ const LimitedTransactionSchema = new Schema<ILimitedTransaction>({
     disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
+const UserInfoSchema = new Schema<IUserInfo>({
+    _id: { type: String, default: () => randomUUID()},
+    key: { type: String, require: true },
+    value: { type: String, require: true },
+    type: { type: String, require: true }
+}, { timestamps: true })
+
 const UserSchema = new Schema<IUser>({
     _id: { type: String, default: () => randomUUID()},
     username: { type: String, required: true },
     roleRefs: { type: [RoleRefSchema], required: true },
+    userInfo: { type: [UserInfoSchema], required: false },
 
     passwords: { type: [PasswordSchema], required: false },
 
@@ -117,12 +146,17 @@ const UserModel = model<IUser>('User', UserSchema)
 
 export {
     TContactInfoType,
+    TPasswordType,
     TLimitedTransactionType,
+    TUserInfoType,
     IRoleRef,
     IPassword,
     IContactInfo,
+    IAccessToken,
     IClientDevice,
     ILimitedTransaction,
+    IUserInfo,
     IUser
 }
+
 export default UserModel
