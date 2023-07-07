@@ -1,12 +1,12 @@
 import express from 'express'
 import swaggerUI from 'swagger-ui-express'
 
-import config from '../config'
+import Config from '../config'
 import swaggerData from '../../docs/swaggerDocs/index.json'
 import appPackageInfo from '../../package.json'
 
 const router = express.Router()
-const env = config.getEnv()
+const env = Config.getEnv()
 
 // update some swagger data
 // author, title, description, version, license, port, basePath

@@ -30,6 +30,7 @@ describe('User Route Testing', () => {
             key: '101',
             type: 'current'
         }],
+        userInfo: [],
         roleRefs: [
             {
                 roleId: ''
@@ -65,6 +66,7 @@ describe('User Route Testing', () => {
             key: '101',
             type: 'current'
         }],
+        userInfo: [],
         roleRefs: [
             {
                 roleId: ''

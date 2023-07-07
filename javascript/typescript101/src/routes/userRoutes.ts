@@ -2,17 +2,17 @@ import express from 'express'
 
 import UserModel, { IUser } from '../dataSource/models/userModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataRequest'
-import config from '../config'
+import Config from '../config'
 
-import UserControllers from '../controllers/userControllers'
+import UserController from '../controllers/userController'
 
 const router = express.Router()
-const env = config.getEnv()
+const env = Config.getEnv()
 
 router.get(env.RootApiEndpoint + 'users', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
-    
-    const result = await UserControllers.getUsers(pageInfo)
+
+    const result = await UserController.getUsers(pageInfo)
 
     return res.json(result)
 })

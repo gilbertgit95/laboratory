@@ -26,6 +26,7 @@ describe('User Model Testing', () => {
             key: '101',
             type: 'current'
         }],
+        userInfo: [],
         roleRefs: [
             {
                 roleId: ''
@@ -61,6 +62,7 @@ describe('User Model Testing', () => {
             key: '101',
             type: 'current'
         }],
+        userInfo: [],
         roleRefs: [
             {
                 roleId: ''

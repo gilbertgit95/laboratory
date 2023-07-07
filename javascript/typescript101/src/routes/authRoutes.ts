@@ -1,10 +1,10 @@
 import express from 'express'
 
 import UserModel, { IUser } from '../dataSource/models/userModel'
-import config from '../config'
+import Config from '../config'
 
+const env = Config.getEnv()
 const router = express.Router()
-const env = config.getEnv()
 
 router.post(env.RootApiEndpoint + 'signin', async (req, res) => {
 

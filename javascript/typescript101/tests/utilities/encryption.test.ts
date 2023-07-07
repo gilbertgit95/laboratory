@@ -1,20 +1,12 @@
-import {
-    generateRandNumber,
-    btoa,
-    atob,
-    hashText,
-    verifyTextToHash,
-    generateJWT,
-    verifyJWT
-} from '../../src/utilities/encryption'
+import Encryption from '../../src/utilities/encryption'
 
 describe('encryption utility testing', () => {
     test('Check btoa and atob', () => {
         let testData = 'wordtest'
         let testData2 = 'wordtest2'
     
-        let encrypted = btoa(testData)
-        let decrypted = atob(encrypted)
+        let encrypted = Encryption.btoa(testData)
+        let decrypted = Encryption.atob(encrypted)
     
         expect(decrypted).toBe(testData)
         expect(decrypted).toBeTruthy()
@@ -28,9 +20,9 @@ describe('encryption utility testing', () => {
         let testData = 'wordtest'
         let testData2 = 'wordtest2'
     
-        let hash = await hashText(testData)
-        let test1 = await verifyTextToHash(testData, hash)
-        let test2 = await verifyTextToHash(testData2, hash)
+        let hash = await Encryption.hashText(testData)
+        let test1 = await Encryption.verifyTextToHash(testData, hash)
+        let test2 = await Encryption.verifyTextToHash(testData2, hash)
     
         // console.log('password: ', await hashText('master101'))
     
@@ -47,8 +39,8 @@ describe('encryption utility testing', () => {
             prop: 'testData'
         }
     
-        let jwt = generateJWT(testData)
-        let data = await verifyJWT(jwt)
+        let jwt = Encryption.generateJWT(testData)
+        let data = await Encryption.verifyJWT(jwt)
     
         // delete some additional info not existed in the original data
         delete data.exp

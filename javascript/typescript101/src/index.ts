@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
 
 import app from './app'
-import config from './config'
+import Config from './config'
 
-const env = config.getEnv()
+const env = Config.getEnv()
 
 app.listen(env.AppPort, async () => {
     try {

@@ -1,13 +1,11 @@
 import mongoose from 'mongoose'
 import prompts from 'prompts'
 
-import config from '../config'
+import Config from '../config'
 
-const env = config.getEnv()
+const env = Config.getEnv()
 
 class AdminCli {
-    constructor() {
-    }
 
     public static async execute():Promise<void> {
         console.log('+--------------------------+')

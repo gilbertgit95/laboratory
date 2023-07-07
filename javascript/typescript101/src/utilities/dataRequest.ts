@@ -1,6 +1,6 @@
-import config from '../config'
+import Config from '../config'
 
-const env = config.getEnv()
+const env = Config.getEnv()
 
 interface IListOutput {
     items: any[],
@@ -25,8 +25,8 @@ class DataRequest {
 
     public static getPageInfoQuery(queries:any):IPgeInfo {
         return {
-            page: queries.page? parseInt(queries.page): 1,
-            pageSize: queries.pageSize? parseInt(queries.pageSize): env.DafaultPagination
+            page: queries.page? parseInt(queries.page, 10): 1,
+            pageSize: queries.pageSize? parseInt(queries.pageSize, 10): env.DafaultPagination
         }
     }
 
@@ -36,7 +36,7 @@ class DataRequest {
     }
 
     public async getItems(query:any = {}, project:any = {}, options:any = {}):Promise<IListOutput> {
-        let output:IListOutput = {
+        const output:IListOutput = {
             items: [],
             totalItems: 0,
             page: 0,
@@ -52,8 +52,8 @@ class DataRequest {
     }
 
     public async getItemsByPage(query:any, project:any, options:any, pageOptions:IPgeInfo):Promise<IListOutput> {
-        options['skip'] = (pageOptions.page - 1) * pageOptions.pageSize
-        options['limit'] = pageOptions.pageSize
+        options.skip = (pageOptions.page - 1) * pageOptions.pageSize
+        options.limit = pageOptions.pageSize
 
         const output = await this.getItems(query, project, options)
 
