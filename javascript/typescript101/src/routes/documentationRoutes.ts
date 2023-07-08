@@ -16,8 +16,8 @@ swaggerData.info.version = appPackageInfo.version
 swaggerData.info.contact.email = appPackageInfo.author
 swaggerData.info.license.name = appPackageInfo.license
 swaggerData.host = `localhost:${ env.AppPort }`
-swaggerData.basePath = env.RootApiEndpoint
+swaggerData.basePath = env.RootApiCoreEndpoint
 
-router.use(env.RootApiEndpoint + 'apiDoc', swaggerUI.serve, swaggerUI.setup(swaggerData))
+router.use(env.RootApiCoreEndpoint + 'apiDoc', swaggerUI.serve, swaggerUI.setup(swaggerData))
 
 export default router

@@ -9,7 +9,7 @@ import UserController from '../controllers/userController'
 const router = express.Router()
 const env = Config.getEnv()
 
-router.get(env.RootApiEndpoint + 'users', async (req, res) => {
+router.get(env.RootApiCoreEndpoint + 'users', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
     const result = await UserController.getUsers(pageInfo)
@@ -17,7 +17,7 @@ router.get(env.RootApiEndpoint + 'users', async (req, res) => {
     return res.json(result)
 })
 
-router.post(env.RootApiEndpoint + 'users', async (req, res) => {
+router.post(env.RootApiCoreEndpoint + 'users', async (req, res) => {
     const user: IUser = {
         username: 'bertwo',
         passwords: [{
@@ -57,11 +57,11 @@ router.post(env.RootApiEndpoint + 'users', async (req, res) => {
     return res.json(savedUser)
 })
 
-router.put(env.RootApiEndpoint + 'users', async (req, res) => {
+router.put(env.RootApiCoreEndpoint + 'users', async (req, res) => {
     return res.json([])
 })
 
-router.delete(env.RootApiEndpoint + 'users', async (req, res) => {
+router.delete(env.RootApiCoreEndpoint + 'users', async (req, res) => {
     return res.json([])
 })
 

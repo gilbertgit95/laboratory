@@ -16,6 +16,7 @@ interface Env {
 
     RootWebappDir: string,
     RootWebappEndpoint: string
+    RootApiCoreEndpoint: string,
     RootApiEndpoint: string,
 
     JwtExp: number,
@@ -40,6 +41,7 @@ class Config {
 
             RootWebappDir: process.env.ROOT_WEBAPP_DIR? process.env.ROOT_WEBAPP_DIR: '',
             RootWebappEndpoint: process.env.ROOT_WEBAPP_ENDPOINT? process.env.ROOT_WEBAPP_ENDPOINT: '',
+            RootApiCoreEndpoint: process.env.ROOT_API_CORE_ENDPOINT? process.env.ROOT_API_CORE_ENDPOINT: '',
             RootApiEndpoint: process.env.ROOT_API_ENDPOINT? process.env.ROOT_API_ENDPOINT: '',
 
             JwtExp: Number(process.env.JWT_EXPIRATION),

@@ -62,7 +62,7 @@ class DataRequest {
         output.page = pageOptions.page
         output.pageSize = pageOptions.pageSize
         output.totalPages = Math.ceil(output.totalItems / output.pageSize)
-        output.nextURL = output.page <= output.totalPages? null: `page=${ output.page + 1 }&pageSize=${ output.pageSize }`
+        output.nextURL = output.page < output.totalPages? `page=${ output.page + 1 }&pageSize=${ output.pageSize }`: null
 
         return output
     }

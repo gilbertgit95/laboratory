@@ -4,7 +4,8 @@ import { randomUUID } from 'crypto'
 // types:
 // - api-route
 // - ui-route
-type TFeatureType = 'api-route' | 'ui-route'
+// - ui-module
+type TFeatureType = 'api-route' | 'ui-route' | 'ui-module'
 
 // create interfaces
 interface IFeature {
@@ -12,7 +13,8 @@ interface IFeature {
     name?: string,
     type: TFeatureType,
     tags?: string[],
-    value: string
+    value: string,
+    description?: string
 }
 
 // create schemas
@@ -21,7 +23,8 @@ const FeatureSchema = new Schema<IFeature>({
     name: { type: String, required: false },
     type: { type: String, required: true },
     tags: { type: [String], required: false },
-    value: { type: String, required: true }
+    value: { type: String, required: true },
+    description: { type: String, required: false }
 })
 
 // create model
