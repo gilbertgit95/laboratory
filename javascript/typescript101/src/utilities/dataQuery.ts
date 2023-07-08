@@ -16,7 +16,7 @@ interface IPgeInfo {
     pageSize: number
 }
 
-class DataRequest {
+class DataQuery {
     private DataModel:any
 
     constructor(DataModel:any) {
@@ -67,12 +67,14 @@ class DataRequest {
         return output
     }
 
-
-
+    public async createItem(doc:any):Promise<any> {
+        const resp = await this.DataModel.insertOne(doc)
+        return resp
+    }
 }
 
 export {
     IListOutput,
     IPgeInfo
 }
-export default DataRequest
+export default DataQuery

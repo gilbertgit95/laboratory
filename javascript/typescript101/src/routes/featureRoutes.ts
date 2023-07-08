@@ -1,7 +1,7 @@
 import express from 'express'
 
 import FeatureModel, { IFeature } from '../dataSource/models/featureModel'
-import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataRequest'
+import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import Config from '../config'
 
 import FeatureController from '../controllers/featureController'

@@ -5,4 +5,4 @@ class AccessChecker {
     }
 }
 
-export default (new AccessChecker).middleware
+export default (new AccessChecker()).middleware

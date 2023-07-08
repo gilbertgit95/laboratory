@@ -1,7 +1,7 @@
 import express from 'express'
 
 import RoleModel, { IRole } from '../dataSource/models/roleModel'
-import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataRequest'
+import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import Config from '../config'
 
 import RoleController from '../controllers/roleController'

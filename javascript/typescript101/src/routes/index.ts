@@ -1,4 +1,5 @@
 import express from 'express'
+import requestIP from 'request-ip'
 
 import Config from '../config'
 
@@ -19,11 +20,14 @@ const env = Config.getEnv()
 router.get(env.RootWebappEndpoint, express.static(env.RootWebappDir))
 router.use(documentationRoutes)
 
+// middlewares executed when accessing routes including auths
+router.use(requestIP.mw())
+router.use(clientInfoProvider)
+
 // public routes without authorization
 router.use(authRoutes)
 
-// add middlewares for additional info and access checker
-router.use(clientInfoProvider)
+// add middlewares for secured routes
 router.use(userInfoProvider)
 router.use(accessChecker)
 

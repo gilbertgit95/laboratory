@@ -30,13 +30,34 @@ interface IContactInfo {
 
 interface IAccessToken {
     _id?: string,
-    jwt: string
+    jwt: string,
+    ipAddress?: string,
 }
 
 interface IClientDevice {
     _id?: string,
-    countryCode?: string,
-    clientInfo: string,
+    ua: string,
+    browser: {
+        name: string | undefined,
+        version: string | undefined,
+        major: string | undefined
+    },
+    engine: {
+        name: string | undefined,
+        version: string | undefined,
+    },
+    os: {
+        name: string | undefined,
+        version: string | undefined,
+    },
+    device: {
+        vendor: string | undefined,
+        model: string | undefined,
+        type: string | undefined,
+    },
+    cpu: {
+        architecture: string | undefined,
+    },
     accessTokens?: IAccessToken[],
     lastUsageDate?: Date,
     disabled?: boolean
@@ -97,14 +118,35 @@ const ContactInfoSchema = new Schema<IContactInfo>({
 
 const AccessTokenSchema = new Schema<IAccessToken>({
     _id: { type: String, default: () => randomUUID()},
-    jwt: { type: String, require: true }
+    jwt: { type: String, require: true },
+    ipAddress: { type: String, require: false }
 }, { timestamps: true })
 
 const ClientDeviceSchema = new Schema<IClientDevice>({
     _id: { type: String, default: () => randomUUID()},
-    clientInfo: { type: String, require: true },
+    ua: { type: String, require: true },
+    browser: {
+        name: { type: String, require: false, default: '' },
+        version: { type: String, require: false, default: '' },
+        major: { type: String, require: false, default: '' }
+    },
+    engine: {
+        name: { type: String, require: false, default: '' },
+        version: { type: String, require: false, default: '' },
+    },
+    os: {
+        name: { type: String, require: false, default: '' },
+        version: { type: String, require: false, default: '' },
+    },
+    device: {
+        vendor: { type: String, require: false, default: '' },
+        model: { type: String, require: false, default: '' },
+        type: { type: String, require: false, default: '' },
+    },
+    cpu: {
+        architecture: { type: String, require: false, default: '' },
+    },
     accessTokens: { type: [AccessTokenSchema], require: false },
-    countryCode: { type: String, require: false },
     lastUsageDate: { type: Date, require: false },
     disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
