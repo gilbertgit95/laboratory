@@ -1,4 +1,4 @@
-import userController from "../controllers/userController"
+import userController from '../controllers/userController'
 
 class UserInfoProvider {
     public async middleware(req:any, res:any, next:any) {

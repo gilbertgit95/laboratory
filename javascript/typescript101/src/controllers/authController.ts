@@ -1,5 +1,5 @@
 import UserModel, { IUser } from '../dataSource/models/userModel'
-import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataRequest'
+import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import Config from '../config'
 
 const env = Config.getEnv()

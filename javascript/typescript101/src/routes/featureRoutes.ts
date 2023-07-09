@@ -4,7 +4,7 @@ import FeatureModel, { IFeature } from '../dataSource/models/featureModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import Config from '../config'
 
-import FeatureController from '../controllers/featureController'
+import featureController from '../controllers/featureController'
 
 const router = express.Router()
 const env = Config.getEnv()
@@ -12,7 +12,7 @@ const env = Config.getEnv()
 router.get(env.RootApiCoreEndpoint + 'features', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
-    const result = await FeatureController.getFeatures(pageInfo)
+    const result = await featureController.getFeatures(pageInfo)
 
     return res.json(result)
 })

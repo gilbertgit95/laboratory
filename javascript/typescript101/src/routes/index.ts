@@ -3,12 +3,13 @@ import requestIP from 'request-ip'
 
 import Config from '../config'
 
-import clientInfoProvider from '../middlewares/clientInfoProvider'
-import userInfoProvider from '../middlewares/userInfoProvider'
-import accessChecker from '../middlewares/accessChecker'
+import clientInfoProvider from '../middlewares/clientInfoProviderMiddleware'
+import userInfoProvider from '../middlewares/userInfoProviderMiddleware'
+import accessChecker from '../middlewares/accessCheckerMiddleware'
 
 import documentationRoutes from './documentationRoutes'
 import authRoutes from './authRoutes'
+import systemInfo from './systemInfoRoutes'
 import featureRoutes from './featureRoutes'
 import roleRoutes from './roleRoutes'
 import userRoutes from './userRoutes'
@@ -32,6 +33,7 @@ router.use(userInfoProvider)
 router.use(accessChecker)
 
 // routes for data api needs authorization
+router.use(systemInfo)
 router.use(featureRoutes)
 router.use(roleRoutes)
 router.use(userRoutes)

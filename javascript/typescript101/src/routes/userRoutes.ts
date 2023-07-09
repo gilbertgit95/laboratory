@@ -4,7 +4,7 @@ import UserModel, { IUser } from '../dataSource/models/userModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import Config from '../config'
 
-import UserController from '../controllers/userController'
+import userController from '../controllers/userController'
 
 const router = express.Router()
 const env = Config.getEnv()
@@ -12,7 +12,7 @@ const env = Config.getEnv()
 router.get(env.RootApiCoreEndpoint + 'users/:userId', async (req, res) => {
     const { userId } = req.params
 
-    const result = await UserController.getUser({_id: userId})
+    const result = await userController.getUser({_id: userId})
 
     return res.json(result)
 })
@@ -20,7 +20,7 @@ router.get(env.RootApiCoreEndpoint + 'users/:userId', async (req, res) => {
 router.get(env.RootApiCoreEndpoint + 'users', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
-    const result = await UserController.getUsers(pageInfo)
+    const result = await userController.getUsers(pageInfo)
 
     return res.json(result)
 })

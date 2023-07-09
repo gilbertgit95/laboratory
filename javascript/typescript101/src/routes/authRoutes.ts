@@ -1,5 +1,4 @@
 import express from 'express'
-import expressListRoutes from 'express-list-routes'
 
 import UserModel, { IUser } from '../dataSource/models/userModel'
 import Config from '../config'
