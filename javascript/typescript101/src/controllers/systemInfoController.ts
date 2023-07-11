@@ -27,7 +27,7 @@ class SystemInfo {
     public getIp(netInterface:string, familyType:TIpType = 'IPv4'):string|null {
         let address = null
 
-        for (let [netKey, netvalue] of Object.entries(os.networkInterfaces())) {
+        for (const [netKey, netvalue] of Object.entries(os.networkInterfaces())) {
 
             // match interface name
             if (netKey === netInterface) {
@@ -42,7 +42,7 @@ class SystemInfo {
 
     /**
      * this will return some information about the system and the app
-     * @returns 
+     * @returns
      */
     public details():ISystemInfo {
         return {

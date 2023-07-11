@@ -8,7 +8,7 @@ class GenerateKey {
     public desc = 'This will generate random keys'
 
     public async execute():Promise<void> {
-
+        console.log('select options to execute')
     }
 
     /**

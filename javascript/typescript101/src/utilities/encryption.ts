@@ -48,7 +48,7 @@ class Encryption {
      * @returns { Promise<string> } encypted
      */
     public static async hashText(text: string):Promise<string> {
-        let salt = await bcrypt.genSalt(10)
+        const salt = await bcrypt.genSalt(10)
         return await bcrypt.hash(text, salt)
     }
 
