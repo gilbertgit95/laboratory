@@ -71,6 +71,16 @@ class DataQuery {
         const resp = await this.DataModel.insertOne(doc)
         return resp
     }
+
+    public async updateItem(query:any, doc:any):Promise<any> {
+        const resp = await this.DataModel.updateOne(query, doc)
+        return resp
+    }
+
+    public async deleteItem(query:any):Promise<any> {
+        const resp = await this.DataModel.deleteOne(query)
+        return resp
+    }
 }
 
 export {

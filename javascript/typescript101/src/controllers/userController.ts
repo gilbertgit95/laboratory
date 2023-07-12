@@ -15,23 +15,35 @@ class UserController {
     }
 
     public async getUser(query:any):Promise<IUser|null> {
-        return await this.cachedData.getItem(query)
+        return await this.cachedData.getItem(query._id)
     }
 
-    public async getUsers(pageInfo: IPgeInfo):Promise<IListOutput> {
-        const userReq:DataRequest = new DataRequest(UserModel)
+    public async getUsers(query:any = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
 
-        const result = await userReq.getItemsByPage({},{}, {},pageInfo)
+        const result = await this.request.getItemsByPage(query, {}, {}, pageInfo)
 
         return result
     }
 
-    public async saveUser(doc:any):Promise<any> {
-        const userReq:DataRequest = new DataRequest(UserModel)
+    public async saveUser(doc:IUser):Promise<IUser | null> {
 
-        const result = await userReq.createItem(doc)
+        const result = await this.cachedData.createItem(doc)
 
         return result
+    }
+
+    public async updateUser(id:string, doc:IUser):Promise<IUser | null> {
+
+        const result = await this.cachedData.updateItem(id, doc)
+
+        return result
+    }
+
+    public async deleteUser(id:string):Promise<string> {
+
+        const result = await this.cachedData.deleteItem(id)
+
+        return id
     }
 }
 
