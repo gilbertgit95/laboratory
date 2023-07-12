@@ -1,5 +1,6 @@
 import express from 'express'
 import requestIP from 'request-ip'
+import bodyParser from 'body-parser'
 
 import Config from '../config'
 
@@ -22,6 +23,8 @@ router.get(env.RootWebappEndpoint, express.static(env.RootWebappDir))
 router.use(documentationRoutes)
 
 // middlewares executed when accessing routes including auths
+router.use(bodyParser.json())
+router.use(bodyParser.urlencoded({ extended: true }))
 router.use(requestIP.mw())
 router.use(clientInfoProvider)
 

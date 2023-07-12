@@ -32,18 +32,18 @@ class UserController {
         return result
     }
 
-    public async updateUser(id:string, doc:IUser):Promise<IUser | null> {
+    public async updateUser(id:string, doc:any):Promise<IUser | null> {
 
         const result = await this.cachedData.updateItem(id, doc)
 
         return result
     }
 
-    public async deleteUser(id:string):Promise<string> {
+    public async deleteUser(id:string):Promise<string | null> {
 
         const result = await this.cachedData.deleteItem(id)
 
-        return id
+        return result
     }
 }
 

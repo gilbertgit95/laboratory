@@ -26,53 +26,33 @@ router.get(env.RootApiCoreEndpoint + 'users/:userId', async (req, res) => {
 })
 
 router.post(env.RootApiCoreEndpoint + 'users/create', async (req, res) => {
-    console.log(req.query)
-    const user: IUser = {
-        username: 'bertwo',
-        passwords: [{
-            key: '101',
-            type: 'current'
-        }],
-        userInfo: [],
-        roleRefs: [
-            {
-                roleId: ''
-            }
-        ],
-        contactInfos: [],
-        clientDevices: [],
-        limitedTransactions: [
-            {
-                limit: 15,
-                type: 'otp-signin',
-                key: 0,
-                attempts: 0
-            },
-            {
-                limit: 15,
-                type: 'pass-reset',
-                key: 0,
-                attempts: 0
-            },
-            {
-                limit: 15,
-                type: '',
-                key: 0,
-                attempts: 0
-            }
-        ]
-    }
-    // await userController.saveUser()
-    // const savedUser = await UserModel.create(user)
-    return res.json(user)
+    const userData = req.body
+    const resp = await userController.saveUser(userData)
+
+    return res.json(resp)
 })
 
 router.put(env.RootApiCoreEndpoint + 'users/:userId', async (req, res) => {
-    return res.json([])
+    const { userId } = req.params
+    const userData = req.body
+    let resp = null
+
+    if (userId && userData) {
+        resp = await userController.updateUser(userId, userData)
+    }
+
+    return res.json(resp)
 })
 
 router.delete(env.RootApiCoreEndpoint + 'users/:userId', async (req, res) => {
-    return res.json([])
+    const { userId } = req.params
+    let resp = null
+
+    if (userId) {
+        resp = await userController.deleteUser(userId)
+    }
+
+    return res.json(resp)
 })
 
 export default router

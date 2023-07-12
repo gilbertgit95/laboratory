@@ -37,7 +37,7 @@ class DataCache {
     public async createItem(doc:any):Promise<any | null> {
         let result = null
 
-        if (doc._id) {
+        if (doc) {
             result = await this.request.createItem(doc)
 
             this.cache.set(result._id, JSON.stringify(result))
@@ -63,6 +63,7 @@ class DataCache {
 
         if (id) {
             result = await this.request.deleteItem({_id: id})
+            console.log('delete: ', result)
             if (this.cache.has(id)) this.cache.del(id)
         }
 
