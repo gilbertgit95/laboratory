@@ -12,7 +12,7 @@ const env = Config.getEnv()
 router.get(env.RootApiCoreEndpoint + 'users', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
-    const result = await userController.getUsers({}, pageInfo)
+    const result = await userController.getUsersByPage({}, pageInfo)
 
     return res.json(result)
 })

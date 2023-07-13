@@ -18,7 +18,14 @@ class RoleController {
         return await this.cachedData.getItem(query._id)
     }
 
-    public async getRoles(query:any = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
+    public async getAllRoles():Promise<IRole[]> {
+
+        const result = await this.cachedData.getAllItems()
+
+        return result
+    }
+
+    public async getRolesByPage(query:any = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
 
         const result = await this.request.getItemsByPage(query, {}, {}, pageInfo)
 

@@ -12,7 +12,7 @@ const env = Config.getEnv()
 router.get(env.RootApiCoreEndpoint + 'roles', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
-    const result = await roleController.getRoles({}, pageInfo)
+    const result = await roleController.getRolesByPage({}, pageInfo)
 
     return res.json(result)
 })

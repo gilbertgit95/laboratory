@@ -12,7 +12,7 @@ const env = Config.getEnv()
 router.get(env.RootApiCoreEndpoint + 'features', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
-    const result = await featureController.getFeatures({}, pageInfo)
+    const result = await featureController.getFeaturesByPage({}, pageInfo)
 
     return res.json(result)
 })

@@ -18,7 +18,14 @@ class UserController {
         return await this.cachedData.getItem(query._id)
     }
 
-    public async getUsers(query:any = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
+    public async getAllUsers():Promise<IUser[]> {
+
+        const result = await this.cachedData.getAllItems()
+
+        return result
+    }
+
+    public async getUsersByPage(query:any = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
 
         const result = await this.request.getItemsByPage(query, {}, {}, pageInfo)
 

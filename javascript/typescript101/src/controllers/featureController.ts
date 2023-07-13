@@ -18,7 +18,14 @@ class FeatureController {
         return await this.cachedData.getItem(query._id)
     }
 
-    public async getFeatures(query:any = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
+    public async getAllFeatures():Promise<IFeature[]> {
+
+        const result = await this.cachedData.getAllItems()
+
+        return result
+    }
+
+    public async getFeaturesByPage(query:any = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
 
         const result = await this.request.getItemsByPage(query, {}, {}, pageInfo)
 
