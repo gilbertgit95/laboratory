@@ -14,10 +14,34 @@ class RoleController {
         this.request = new DataRequest(RoleModel)
     }
 
-    public async getRoles(pageInfo: IPgeInfo):Promise<IListOutput> {
-        const roleReq = new DataRequest(RoleModel)
+    public async getRole(query:any):Promise<IRole|null> {
+        return await this.cachedData.getItem(query._id)
+    }
 
-        const result = await roleReq.getItemsByPage({},{}, {},pageInfo)
+    public async getRoles(query:any = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
+
+        const result = await this.request.getItemsByPage(query, {}, {}, pageInfo)
+
+        return result
+    }
+
+    public async saveRole(doc:IRole):Promise<IRole | null> {
+
+        const result = await this.cachedData.createItem(doc)
+
+        return result
+    }
+
+    public async updateRole(id:string, doc:any):Promise<IRole | null> {
+
+        const result = await this.cachedData.updateItem(id, doc)
+
+        return result
+    }
+
+    public async deleteRole(id:string):Promise<string | null> {
+
+        const result = await this.cachedData.deleteItem(id)
 
         return result
     }

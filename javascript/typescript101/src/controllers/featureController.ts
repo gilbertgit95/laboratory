@@ -14,10 +14,34 @@ class FeatureController {
         this.request = new DataRequest(FeatureModel)
     }
 
-    public async getFeatures(pageInfo: IPgeInfo):Promise<IListOutput> {
-        const featureReq = new DataRequest(FeatureModel)
+    public async getFeature(query:any):Promise<IFeature|null> {
+        return await this.cachedData.getItem(query._id)
+    }
 
-        const result = await featureReq.getItemsByPage({},{}, {},pageInfo)
+    public async getFeatures(query:any = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
+
+        const result = await this.request.getItemsByPage(query, {}, {}, pageInfo)
+
+        return result
+    }
+
+    public async saveFeature(doc:IFeature):Promise<IFeature | null> {
+
+        const result = await this.cachedData.createItem(doc)
+
+        return result
+    }
+
+    public async updateFeature(id:string, doc:any):Promise<IFeature | null> {
+
+        const result = await this.cachedData.updateItem(id, doc)
+
+        return result
+    }
+
+    public async deleteFeature(id:string):Promise<string | null> {
+
+        const result = await this.cachedData.deleteItem(id)
 
         return result
     }
