@@ -99,7 +99,7 @@ class DataCache {
     }
 
     /**
-     * 
+     *
      * @param {string} id - the id of the document
      * @returns {string:null} the id if successfull and null if its not
      */
