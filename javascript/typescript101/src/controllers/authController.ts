@@ -10,7 +10,7 @@ interface ISigninResult {
 }
 
 class AuthController {
-    public async signin(username:string = '', password:string = ''):Promise<ISigninResult | null> {
+    public async signin(userData:IUser, userAgent:string, ipAddress:string ):Promise<ISigninResult | null> {
         // get user using username
 
         // if it exist then check password if it match

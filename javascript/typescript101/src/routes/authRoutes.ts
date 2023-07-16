@@ -7,6 +7,15 @@ const env = Config.getEnv()
 const router = express.Router()
 
 router.post(env.RootApiCoreEndpoint + 'signin', async (req, res) => {
+    // get username and password from the request query
+
+    // get user data
+
+    // get request user agent info
+
+    // get request ip address
+
+    // call signin controller with the above parameters
 
     return res.json({})
 })
