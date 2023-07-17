@@ -8,6 +8,7 @@ const router = express.Router()
 
 router.post(env.RootApiCoreEndpoint + 'signin', async (req, res) => {
     // get username and password from the request query
+    console.log(req.body)
 
     // get user data
 
