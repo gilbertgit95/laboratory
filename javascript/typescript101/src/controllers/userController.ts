@@ -1,7 +1,7 @@
 import DataCache from '../utilities/dataCache'
 import UserModel, { IUser } from '../dataSource/models/userModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
-import Config from '../config'
+import Config from '../utilities/config'
 
 const env = Config.getEnv()
 

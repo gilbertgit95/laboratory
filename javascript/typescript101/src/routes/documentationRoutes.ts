@@ -1,7 +1,7 @@
 import express from 'express'
 import swaggerUI from 'swagger-ui-express'
 
-import Config from '../config'
+import Config from '../utilities/config'
 import swaggerData from '../../docs/swaggerDocs/index.json'
 import appPackageInfo from '../../package.json'
 

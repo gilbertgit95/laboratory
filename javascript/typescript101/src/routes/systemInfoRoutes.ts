@@ -1,6 +1,6 @@
 import express from 'express'
 
-import Config from '../config'
+import Config from '../utilities/config'
 import systemInfoController, { ISystemInfo } from '../controllers/systemInfoController'
 
 const router = express.Router()

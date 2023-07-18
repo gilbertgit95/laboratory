@@ -6,7 +6,6 @@ interface Env {
     AppEnv: string,
     AppPort: number,
     AppAdminConfirmKey: string,
-    AppLogsDirectory: string,
 
     DafaultPagination: number,
     DafaultMaxLoginAttempts: number,
@@ -15,6 +14,7 @@ interface Env {
     MongoURI: string | undefined,
     DBName: string | undefined,
 
+    RootLogsDir: string,
     RootWebappDir: string,
     RootWebappEndpoint: string
     RootApiCoreEndpoint: string,
@@ -32,7 +32,6 @@ class Config {
             AppEnv: appEnv,
             AppPort: Number(process.env.APP_PORT),
             AppAdminConfirmKey: process.env.APP_ADMIN_CONFIRM_KEY? process.env.APP_ADMIN_CONFIRM_KEY: '',
-            AppLogsDirectory: process.env.APP_LOGS_DIR? process.env.APP_LOGS_DIR: '',
 
             DafaultPagination: Number(process.env.DEFAULT_PAGINATION),
             DafaultMaxLoginAttempts: Number(process.env.DEFAULT_MAX_LOGIN_ATTEMPTS),
@@ -41,6 +40,7 @@ class Config {
             MongoURI: process.env[`${ appEnv }_MONGO_URI`]? process.env[`${ appEnv }_MONGO_URI`]: '',
             DBName: process.env[`${ appEnv }_MONGO_DB_NAME`]? process.env[`${ appEnv }_MONGO_DB_NAME`]: '',
 
+            RootLogsDir: process.env.ROOT_LOGS_DIR? process.env.ROOT_LOGS_DIR: '',
             RootWebappDir: process.env.ROOT_WEBAPP_DIR? process.env.ROOT_WEBAPP_DIR: '',
             RootWebappEndpoint: process.env.ROOT_WEBAPP_ENDPOINT? process.env.ROOT_WEBAPP_ENDPOINT: '',
             RootApiCoreEndpoint: process.env.ROOT_API_CORE_ENDPOINT? process.env.ROOT_API_CORE_ENDPOINT: '',

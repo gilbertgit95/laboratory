@@ -2,7 +2,7 @@ import express from 'express'
 import requestIP from 'request-ip'
 import bodyParser from 'body-parser'
 
-import Config from '../config'
+import Config from '../utilities/config'
 
 import clientInfoProvider from '../middlewares/clientInfoProviderMiddleware'
 import userInfoProvider from '../middlewares/userInfoProviderMiddleware'

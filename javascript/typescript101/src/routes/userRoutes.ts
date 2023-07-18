@@ -2,7 +2,7 @@ import express from 'express'
 
 import UserModel, { IUser } from '../dataSource/models/userModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
-import Config from '../config'
+import Config from '../utilities/config'
 
 import userController from '../controllers/userController'
 

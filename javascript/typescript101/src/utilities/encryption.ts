@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 import jwt from 'jsonwebtoken'
 
-import Config from '../config'
+import Config from './config'
 
 const env = Config.getEnv()
 

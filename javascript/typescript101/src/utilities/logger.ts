@@ -1,7 +1,7 @@
 import { createLogger, format, transports } from 'winston'
 import DailyRotateFile from 'winston-daily-rotate-file'
 
-import Config from '../config'
+import Config from './config'
 
 const env = Config.getEnv()
 const { combine, timestamp, printf } = format
@@ -18,7 +18,7 @@ class Logger {
             transports: [
                 new transports.Console(),
                 new DailyRotateFile({
-                    filename: (typeof logCollection === 'string')? `${ env.AppLogsDirectory }/${ logCollection }/%DATE%.log`: `${ env.AppLogsDirectory }/%DATE%.log`,
+                    filename: (typeof logCollection === 'string')? `${ env.RootLogsDir }/${ logCollection }/%DATE%.log`: `${ env.RootLogsDir }/%DATE%.log`,
                     datePattern: 'YYYY-MM-DD-HH',
                     zippedArchive: true,
                     maxSize: '20m',
@@ -27,8 +27,8 @@ class Logger {
             ],
             format: combine(
                 timestamp(),
-                printf(({ level, message, timestamp }) => {
-                    return `${ timestamp } [${ level }]: ${ message }`
+                printf((data) => {
+                    return `${ data.timestamp } [${ data.level }]: ${ data.message }`
                 })
             )
         })

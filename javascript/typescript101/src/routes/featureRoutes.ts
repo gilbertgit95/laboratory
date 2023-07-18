@@ -2,7 +2,7 @@ import express from 'express'
 
 import FeatureModel, { IFeature } from '../dataSource/models/featureModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
-import Config from '../config'
+import Config from '../utilities/config'
 
 import featureController from '../controllers/featureController'
 

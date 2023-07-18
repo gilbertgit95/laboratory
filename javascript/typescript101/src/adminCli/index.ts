@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import prompts from 'prompts'
 
-import Config from '../config'
+import Config from '../utilities/config'
 
 const env = Config.getEnv()
 

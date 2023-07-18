@@ -1,7 +1,7 @@
 import express from 'express'
 
 import UserModel, { IUser } from '../dataSource/models/userModel'
-import Config from '../config'
+import Config from '../utilities/config'
 
 const env = Config.getEnv()
 const router = express.Router()
