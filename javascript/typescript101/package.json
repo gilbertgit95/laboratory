@@ -51,6 +51,8 @@
     "prompts": "^2.4.2",
     "request-ip": "^3.3.0",
     "swagger-ui-express": "^4.6.3",
-    "ua-parser-js": "^1.0.35"
+    "ua-parser-js": "^1.0.35",
+    "winston": "^3.10.0",
+    "winston-daily-rotate-file": "^4.7.1"
   }
 }

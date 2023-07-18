@@ -6,6 +6,7 @@ interface Env {
     AppEnv: string,
     AppPort: number,
     AppAdminConfirmKey: string,
+    AppLogsDirectory: string,
 
     DafaultPagination: number,
     DafaultMaxLoginAttempts: number,
@@ -31,6 +32,7 @@ class Config {
             AppEnv: appEnv,
             AppPort: Number(process.env.APP_PORT),
             AppAdminConfirmKey: process.env.APP_ADMIN_CONFIRM_KEY? process.env.APP_ADMIN_CONFIRM_KEY: '',
+            AppLogsDirectory: process.env.APP_LOGS_DIR? process.env.APP_LOGS_DIR: '',
 
             DafaultPagination: Number(process.env.DEFAULT_PAGINATION),
             DafaultMaxLoginAttempts: Number(process.env.DEFAULT_MAX_LOGIN_ATTEMPTS),
