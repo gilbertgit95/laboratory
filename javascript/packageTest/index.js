@@ -1,3 +1,7 @@
+#!/usr/bin/env node
+
+console.log('testing package');
+
 module.exports = {
     getInfo() {
         return {
@@ -6,4 +10,4 @@ module.exports = {
             age: 28
         }
     }
-}
+};
