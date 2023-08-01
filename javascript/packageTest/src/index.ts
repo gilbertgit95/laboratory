@@ -1,18 +1,17 @@
 #!/usr/bin/env node
+import Main from './main'
+import { IPlatform } from './utilities/platform'
 
-interface IUserInfo {
-    name: string,
-    email: string
-}
+const config:IPlatform[] = [
 
-console.log('testing package')
+]
+// select platforms
+// - server
+//      + NodeJS, Typescript, ExpressJS
+// - webapp
+//      + React, Typescript
+// - mobile
+//      + React native, Typescript
 
-export default {
-    getInfo():IUserInfo|null {
-        const user:IUserInfo = {
-            name: 'test',
-            email: 'test'
-        }
-        return user
-    }
-}
+const main = new Main(config)
+main.execute()
