@@ -1,5 +1,5 @@
-import Platform, { IPlatform, IType } from './utilities/platform'
-import Input, { ISelectInput } from './utilities/input'
+import Platform, { IPlatform } from './utilities/platform'
+import Input from './utilities/input'
 
 class Main {
     private platforms:Platform[]
@@ -42,7 +42,7 @@ class Main {
         const SelectedType = SelectedPlatform? await SelectedPlatform.selectType(): null
         const SelectedTypeInfo = SelectedPlatform?.getTypeInfo(SelectedType? SelectedType: '')
 
-        console.log('selected result: ', SelectedPlatform?.info, SelectedTypeInfo)
+        console.log(`Processing: ${ SelectedPlatform?.info.id } -> ${ SelectedTypeInfo?.id }`)
 
         console.log('cli ended')
     }
