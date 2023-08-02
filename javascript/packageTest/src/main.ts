@@ -1,5 +1,6 @@
 import Platform, { IPlatform } from './utilities/platform'
 import Input from './utilities/input'
+import { logo } from './config'
 
 class Main {
     private platforms:Platform[]
@@ -21,7 +22,12 @@ class Main {
     }
 
     public async execute():Promise<void> {
-        console.log('cli started')
+        console.log(logo)
+
+        console.log(` - Welcome to kagiweb-cli! Please be noted that this app will populate base code and files inside the current folder:`)
+        console.log(` - ${ __dirname }`)
+        console.log(` - Choose Kagiweb base code you wanted to develop.`)
+        console.log('\n')
 
         // let user select platforms
         const platformSelection = await Input.selectInput({
@@ -42,9 +48,10 @@ class Main {
         const SelectedType = SelectedPlatform? await SelectedPlatform.selectType(): null
         const SelectedTypeInfo = SelectedPlatform?.getTypeInfo(SelectedType? SelectedType: '')
 
-        console.log(`Processing: ${ SelectedPlatform?.info.id } -> ${ SelectedTypeInfo?.id }`)
-
-        console.log('cli ended')
+        console.log('\n')
+        console.log(` - Processing: ${ SelectedPlatform?.info.id } -> ${ SelectedTypeInfo?.id }`)
+        console.log(' - This app is still on development.')
+        console.log(' - Done generating base code!')
     }
 }
 

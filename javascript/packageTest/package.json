@@ -1,11 +1,11 @@
 {
-  "name": "cli-package-test-101",
+  "name": "kagiweb-gen",
   "version": "1.0.0",
   "description": "testing npm cli",
-  "main": "build/index.js",
-  "bin": "./build/index.js",
+  "main": "bin/index.js",
+  "bin": "./bin/index.js",
   "scripts": {
-    "start": "node build/src/index.js",
+    "start": "node bin/index.js",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc -p ./tsconfig.json",
     "lint": "eslint . --ext .ts",

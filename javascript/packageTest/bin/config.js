@@ -1,6 +1,7 @@
-import { IPlatform } from './utilities/platform'
-
-const config:IPlatform[] = [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.config = exports.logo = void 0;
+const config = [
     {
         id: 'server',
         name: 'Server',
@@ -77,8 +78,8 @@ const config:IPlatform[] = [
             }
         ]
     }
-]
-
+];
+exports.config = config;
 const logo = `
     oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     ooooooooooo/  /oo.*  .*ooooooooooooooooooooooooooooooooooooooooooooooooo
@@ -89,9 +90,5 @@ const logo = `
     oooooo/  /ooo*.  *./o|  | |oo|  |  /o|  . /|  . /o|  |o/__/ooo  /ooooooo
     ooooo/__/oooooo*.__*o|__|.______|__/o|___/o|___/oo|_______/____/oooooooo
     oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-`
-
-export {
-    logo,
-    config
-}
+`;
+exports.logo = logo;
