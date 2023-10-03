@@ -1,22 +1,18 @@
 import dotenv from 'dotenv'
 dotenv.config()
 
-import mongoose from 'mongoose'
 import express from 'express'
-import kgAppRouteHandler from '@kagiweb-tech/api-core-a'
-import Config from '@kagiweb-tech/api-core-a/build/src/utilities/config'
+import appHandler from '@kagiweb-tech/api-core-a'
 
-const env = Config.getEnv()
-const appRoutes = kgAppRouteHandler.getAppRoutes()
+const env = appHandler.getEnv()
+const appRoutes = appHandler.getAppRoutes()
 const app = express().use(appRoutes)
 
 app.listen(env.AppPort, async () => {
     try {
-        await mongoose.connect(env.MongoURI? env.MongoURI: '', {
-            dbName: env.DBName
-        })
+        await appHandler.dbConnect()
         console.log(`- Successfully connected to database`)
-        await kgAppRouteHandler.executePostDBConnectionProcess()
+        await appHandler.executePostDBConnectionProcess()
         console.log(`- Execute post db conection process`)
     } catch (err) {
         console.log(`!Error, was not able to connect to the mongo database: ${ err }`)
