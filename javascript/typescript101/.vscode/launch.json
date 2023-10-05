@@ -5,20 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "node",
-            "name": "Server",
-            "request": "launch",
-            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/tsnd",
-            "program": "src/app.ts",
-            "args": [
-                "--transpile-only",
-                "--respawn",
-                "--project",
-                "tsconfig.json",
-            ],
+            "name": "Attach by Process ID",
+            "processId": "${command:PickProcess}",
+            "request": "attach",
             "skipFiles": [
                 "<node_internals>/**"
-            ]
+            ],
+            "type": "node"
         }
     ]
 }

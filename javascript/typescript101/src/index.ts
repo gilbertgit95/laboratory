@@ -3,6 +3,14 @@ dotenv.config()
 
 import express from 'express'
 import appHandler from '@kagiweb-tech/api-core-a'
+import noteRoutes from './noteRoutes'
+import taskRoutes from './taskRoutes'
+
+// register routes
+// register public routes
+appHandler.addPublicRoute(noteRoutes)
+// register private routes
+appHandler.addPrivateRoute(taskRoutes)
 
 const env = appHandler.getEnv()
 const appRoutes = appHandler.getAppRoutes()
