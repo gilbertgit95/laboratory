@@ -4,7 +4,7 @@ import express from 'express'
 import ErrorHandler from '@kagiweb-tech/api-core-a/utils/errorHandler'
 // import DataRequest, {IListOutput} from '@kagiweb-tech/api-core-a/utils/dataQuery'
 // import Config from '@kagiweb-tech/api-core-a/utils/config'
-import { routerIdentity } from '@kagiweb-tech/api-core-a/utils/appHandler'
+import routerIdentity from '@kagiweb-tech/api-core-a/utils/routerIdentity'
 
 import NoteModel, { INote } from './noteModel'
 
