@@ -15,8 +15,7 @@
     "build": "tsc -p ./tsconfig.json",
     "lint": "eslint . --ext .ts",
     "test": "jest",
-    "apidoc": "swagger-cli bundle docs/swaggerDocs/index.yml --outfile docs/swaggerDocs/__swaggerDocsBuild.json",
-    "admin": "node build/src/adminCli/mainCli.js"
+    "apidoc": "swagger-cli bundle docs/swaggerDocs/index.yml --outfile docs/swaggerDocs/__swaggerDocsBuild.json"
   },
   "author": {
     "name": "Gilbert D. Cuerbo",
