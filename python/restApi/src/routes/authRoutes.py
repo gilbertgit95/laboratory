@@ -1,33 +1,24 @@
 from flask import Blueprint
+from controllers.authControllers import signinController, signoutController, signupController, forgotPasswordController, resetPasswordController
 
 authRoutes = Blueprint('authRoutes', __name__)
 
 @authRoutes.route('/signin')
-def signin():
-    return {
-        'data': 'signin route testing data'
-    }
+def signinRoute():
+    return signinController()
 
 @authRoutes.route('/signout')
-def signout():
-    return {
-        'data': 'signout route testing data'
-    }
+def signoutRoute():
+    return signoutController()
 
 @authRoutes.route('/signup')
-def signup():
-    return {
-        'data': 'signup route testing data'
-    }
+def signupRoute():
+    return signupController()
 
 @authRoutes.route('/forgotPassword')
-def forgotPassword():
-    return {
-        'data': 'forgotPassword route testing data'
-    }
+def forgotPasswordRoute():
+    return forgotPasswordController()
 
 @authRoutes.route('/resetpassword')
-def resetpassword():
-    return {
-        'data': 'resetpassword route testing data'
-    }
+def resetpasswordRoute():
+    return resetPasswordController()
