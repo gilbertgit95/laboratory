@@ -1,15 +1,9 @@
 from flask import Flask
-from routes.authRoutes import authRouteTest
+from routes.authRoutes import authRoutes
 
 app = Flask(__name__)
 
-# root endpoint
-@app.route('/')
-def rootRoute():
-    print(authRouteTest())
-    return {
-        'data': 'test'
-    }
+app.register_blueprint(authRoutes)
 
 # execute the server
 if __name__ == '__main__':
