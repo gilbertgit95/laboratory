@@ -3,22 +3,22 @@ from controllers.authControllers import signinController, signoutController, sig
 
 authRoutes = Blueprint('authRoutes', __name__)
 
-@authRoutes.route('/signin')
+@authRoutes.route('/signin', methods=['POST'])
 def signinRoute():
     return signinController()
 
-@authRoutes.route('/signout')
+@authRoutes.route('/signout', methods=['DELETE'])
 def signoutRoute():
     return signoutController()
 
-@authRoutes.route('/signup')
+@authRoutes.route('/signup', methods=['POST'])
 def signupRoute():
     return signupController()
 
-@authRoutes.route('/forgotPassword')
+@authRoutes.route('/forgotPassword', methods=['POST'])
 def forgotPasswordRoute():
     return forgotPasswordController()
 
-@authRoutes.route('/resetpassword')
+@authRoutes.route('/resetpassword', methods=['PUT'])
 def resetpasswordRoute():
     return resetPasswordController()
