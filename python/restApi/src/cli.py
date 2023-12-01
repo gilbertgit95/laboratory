@@ -2,6 +2,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import inquirer
+from admincli.reset import reset
+from admincli.seeder import seed
 from utils.config import config
 
 def main():
@@ -21,9 +23,9 @@ def main():
     if answers['confirmKey'] == config['AppAdminConfirmKey']:
         # check whta process to execute
         if answers['process'] == 'reset':
-            print('Execute reset')
+            reset()
         elif answers['process'] == 'seed':
-            print('Execute seed')
+            seed()
         else:
             print('[Error] Nothing was selected')
     else:

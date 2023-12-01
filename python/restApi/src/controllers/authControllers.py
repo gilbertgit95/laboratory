@@ -1,9 +1,12 @@
+import uuid
+
 def signinController():
     return {
         'data': 'signin route testing data'
     }
 
 def signoutController():
+    print('uuid4: ', str(uuid.uuid4()))
     return {
         'data': 'signout route testing data'
     }
