@@ -1,6 +1,6 @@
 import uuid
 
-def signinController():
+def signinController(username, password, ua, ip):
     return {
         'data': 'signin route testing data'
     }

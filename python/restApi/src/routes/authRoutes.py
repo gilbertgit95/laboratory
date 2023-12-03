@@ -5,7 +5,13 @@ authRoutes = Blueprint('authRoutes', __name__)
 
 @authRoutes.route('/signin', methods=['POST'])
 def signinRoute():
-    return signinController()
+    # get user agent info
+    ua = None
+    ip = ''
+    # get ip
+    username = request.form.get('username')
+    password = request.form.get('password')
+    return signinController(username, password, ua, ip)
 
 @authRoutes.route('/signout', methods=['GET', 'DELETE'])
 def signoutRoute():
