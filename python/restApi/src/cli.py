@@ -4,17 +4,18 @@ load_dotenv()
 import inquirer
 from admincli.reset import reset
 from admincli.seeder import seed
+from admincli.cleaner import cleanAll
 from utils.config import config
 
 def main():
     print('\nWelcome to admin cli! where you can execute administrative automation. Just be careful because some of the processes could be distructive to you data.\n')
 
     questions = [
-        inquirer.Password("confirmKey", message="Please enter the confirmation key to proceed"),
+        inquirer.Password('confirmKey', message='Please enter the confirmation key to proceed'),
         inquirer.List(
-            "process",
-            message="Select proccess to execute",
-            choices=["reset", "seed"],
+            'process',
+            message='Select proccess to execute',
+            choices=['reset', 'seed', 'clean'],
         )
     ]
 
@@ -26,6 +27,8 @@ def main():
             reset()
         elif answers['process'] == 'seed':
             seed()
+        elif answers['process'] == 'clean':
+            cleanAll()
         else:
             print('[Error] Nothing was selected')
     else:

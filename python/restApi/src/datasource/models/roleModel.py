@@ -1,3 +1,5 @@
-from dbConn import mongoDB
+from .dbConn import mongoDB, Model
 
 rolesCollection = mongoDB['roles']
+
+roleModel = Model(rolesCollection)

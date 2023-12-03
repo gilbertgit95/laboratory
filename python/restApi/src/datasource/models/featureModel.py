@@ -1,3 +1,5 @@
-from dbConn import mongoDB
+from .dbConn import mongoDB, Model
 
 featuresCollection = mongoDB['features']
+
+featureModel = Model(featuresCollection)
