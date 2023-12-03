@@ -1,3 +1,3 @@
-from mongoose import mongoDB
+from dbConn import mongoDB
 
-# usersCollection = mongoDB['users']
+usersCollection = mongoDB['users']
