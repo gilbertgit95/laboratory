@@ -15,5 +15,7 @@ python-dotenv==1.0.0
 python-editor==1.0.4
 readchar==4.0.5
 six==1.16.0
+ua-parser==0.18.0
+user-agents==2.2.0
 wcwidth==0.2.12
 Werkzeug==3.0.1

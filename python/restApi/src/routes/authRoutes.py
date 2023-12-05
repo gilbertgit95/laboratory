@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from utils.reqHeader import getReqIP, getUAInfo
 from controllers.authControllers import signinController, signoutController, signupController, forgotPasswordController, resetPasswordController
 
 authRoutes = Blueprint('authRoutes', __name__)
@@ -6,8 +7,8 @@ authRoutes = Blueprint('authRoutes', __name__)
 @authRoutes.route('/signin', methods=['POST'])
 def signinRoute():
     # get user agent info
-    ua = None
-    ip = ''
+    ua = getUAInfo(request)
+    ip = getReqIP(request)
     # get ip
     username = request.form.get('username')
     password = request.form.get('password')

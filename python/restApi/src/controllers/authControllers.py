@@ -2,7 +2,11 @@ import uuid
 
 def signinController(username, password, ua, ip):
     return {
-        'data': 'signin route testing data'
+        'data': 'signin route testing data',
+        'username': username,
+        'password': password,
+        'ua': ua,
+        'ip': ip
     }
 
 def signoutController():
