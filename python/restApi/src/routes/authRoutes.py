@@ -6,10 +6,11 @@ authRoutes = Blueprint('authRoutes', __name__)
 
 @authRoutes.route('/signin', methods=['POST'])
 def signinRoute():
-    # get user agent info
+    # get user agent info and ip address
     ua = getUAInfo(request)
     ip = getReqIP(request)
-    # get ip
+
+    # get cred info
     username = request.form.get('username')
     password = request.form.get('password')
     return signinController(username, password, ua, ip)
