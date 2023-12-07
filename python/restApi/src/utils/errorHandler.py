@@ -1,15 +1,17 @@
 def errorHandler(func):
-    result = None
-    hasError = False
+    def wrapper():
+        resp = None
+        statusCode = 200
 
-    try:
-        result = func()
-    except Exception as error:
-        print(error)
-        result = {
-            'message': 'Internal Server Error',
-            'code': 500
-        }
-        hasError  = True
+        try:
+            resp = func()
+        except Exception as error:
+            print(error)
+            resp = {
+                'message': 'Internal Server Error'
+            }
+            statusCode  = 500
 
-    return result, hasError
+        return resp, statusCode
+    
+    return wrapper

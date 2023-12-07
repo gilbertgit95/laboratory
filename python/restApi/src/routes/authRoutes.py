@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from utils.reqHeader import getReqIP, getUAInfo
+from utils.errorHandler import errorHandler
 from controllers.authControllers import signinController, signoutController, signupController, forgotPasswordController, resetPasswordController
 
 authRoutes = Blueprint('authRoutes', __name__)
@@ -13,7 +14,13 @@ def signinRoute():
     # get cred info
     username = request.form.get('username')
     password = request.form.get('password')
-    return signinController(username, password, ua, ip)
+
+    @errorHandler
+    def process():
+        # raise('Error')
+        return signinController(username, password, ua, ip)
+
+    return process()
 
 @authRoutes.route('/signout', methods=['GET', 'DELETE'])
 def signoutRoute():
