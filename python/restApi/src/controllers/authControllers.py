@@ -3,6 +3,23 @@ import uuid
 class AuthController:
     @classmethod
     def signin(self, username, password, ua, ip):
+        # fetch user data
+
+        # check if user exist, if not raise 404
+        # check if user exist and user is not disabled, if not raise 423
+
+        # if user exist then encrement the user signin limited transaction
+        # check if the signin limited transaction is valid, if not then disable the user and raise 423
+
+        # check if password is correct
+        # then check ig otp signin is enabled, if enabled, then generate otp and save it to otp signin limited transaction
+        # also return a message
+
+        # if otp signin is disabled, then generate jwt
+        # then upsert device and insert the jwt along with ip inside devices -> accessTokens
+        # then reset signin limited transaction
+
+        # lastly clean the invalid tokens
         return {
             'data': 'signin route testing data',
             'username': username,
