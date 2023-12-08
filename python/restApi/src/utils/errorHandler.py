@@ -1,17 +1,20 @@
-def errorHandler(func):
-    def wrapper():
-        resp = None
-        statusCode = 200
+class ErrorHandler:
 
-        try:
-            resp = func()
-        except Exception as error:
-            print(error)
-            resp = {
-                'message': 'Internal Server Error'
-            }
-            statusCode  = 500
+    @staticmethod
+    def wrap(func):
+        def wrapper():
+            resp = None
+            statusCode = 200
 
-        return resp, statusCode
-    
-    return wrapper
+            try:
+                resp = func()
+            except Exception as error:
+                print(error)
+                resp = {
+                    'message': 'Internal Server Error'
+                }
+                statusCode  = 500
+
+            return resp, statusCode
+        
+        return wrapper

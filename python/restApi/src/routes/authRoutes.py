@@ -1,66 +1,65 @@
 from flask import Blueprint, request
-from utils.reqHeader import getReqIP, getUAInfo
-from utils.errorHandler import errorHandler
-from controllers.authControllers import signinController, signoutController, signupController, forgotPasswordController, resetPasswordController
+from utils.reqHeader import ReqHeader
+from utils.errorHandler import ErrorHandler
+from controllers.authControllers import authController
 
 authRoutes = Blueprint('authRoutes', __name__)
 
-@authRoutes.route('/signin', methods=['POST'])
+@authRoutes.post('/signin')
 def signinRoute():
     # get user agent info and ip address
-    ua = getUAInfo(request)
-    ip = getReqIP(request)
+    ua = ReqHeader.getUAInfo(request)
+    ip = ReqHeader.getReqIP(request)
 
     # get cred info
     username = request.form.get('username')
     password = request.form.get('password')
 
-    @errorHandler
+    @ErrorHandler.wrap
     def process():
-        # raise('Error')
-        return signinController(username, password, ua, ip)
+        # raise Exception('Error')
+        return authController.signin(username, password, ua, ip)
 
-    return process()
+    resp, statusCode = process()
 
-@authRoutes.route('/signout', methods=['GET', 'DELETE'])
+    return resp, statusCode
+
+@authRoutes.delete('/signout')
 def signoutRoute():
 
-    if request.method == 'GET':
-        return { 'data': 'get data' }
-    elif request.method == 'DELETE':
-        paramData = {
-            'param1': request.args.get('param1'),
-            'param2': request.args.get('param2') 
-        }
-        bodyData = request.get_json()
-        formData = {
-            'form1': request.form.get('form1'),
-            'form2': request.form.get('form2')
-        }
-        formEncodedData = {
-            'sform1': request.form.get('sform1'),
-            'sform2': request.form.get('sform2')
-        }
-        headerData = {
-            'authorization': request.headers.get('authorization')
-        }
+    paramData = {
+        'param1': request.args.get('param1'),
+        'param2': request.args.get('param2') 
+    }
+    bodyData = request.get_json()
+    formData = {
+        'form1': request.form.get('form1'),
+        'form2': request.form.get('form2')
+    }
+    formEncodedData = {
+        'sform1': request.form.get('sform1'),
+        'sform2': request.form.get('sform2')
+    }
+    headerData = {
+        'authorization': request.headers.get('authorization')
+    }
 
-        print(paramData)
-        print(bodyData)
-        print(formData)
-        print(formEncodedData)
-        print(headerData)
+    print(paramData)
+    print(bodyData)
+    print(formData)
+    print(formEncodedData)
+    print(headerData)
 
-        return signoutController()
+    return authController.signout()
 
-@authRoutes.route('/signup', methods=['POST'])
+@authRoutes.post('/signup')
 def signupRoute():
-    return signupController()
+    return authController.signup()
 
-@authRoutes.route('/forgotPassword', methods=['POST'])
+@authRoutes.post('/forgotPassword')
 def forgotPasswordRoute():
-    return forgotPasswordController()
+    return authController.forgotPassword()
 
-@authRoutes.route('/resetpassword', methods=['PUT'])
+@authRoutes.put('/resetpassword')
 def resetpasswordRoute():
-    return resetPasswordController()
+    return authController.resetPassword()
