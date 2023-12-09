@@ -6,10 +6,11 @@ class ErrorHandler:
             resp = None
             statusCode = 200
 
+            # resp = func()
             try:
                 resp = func()
             except Exception as error:
-                print(error)
+                print('Error!', error)
                 resp = {
                     'message': 'Internal Server Error'
                 }

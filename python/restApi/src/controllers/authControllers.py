@@ -1,6 +1,9 @@
 import uuid
+from utils.datCache import DataCache
 
 class AuthController:
+    cache = DataCache(expTime=10)
+
     @classmethod
     def signin(self, username, password, ua, ip):
         # fetch user data
@@ -20,13 +23,24 @@ class AuthController:
         # then reset signin limited transaction
 
         # lastly clean the invalid tokens
-        return {
-            'data': 'signin route testing data',
-            'username': username,
-            'password': password,
-            'ua': ua,
-            'ip': ip
-        }
+        respData = {}
+
+        if self.cache.isValidOrExisted('test'):
+            respData = self.cache.get('test')
+            print('isValidOrExisted!')
+        else:
+            data = {
+                'data': 'signin route testing data',
+                'username': username,
+                'password': password,
+                'ua': ua,
+                'ip': ip
+            }
+            self.cache.set('test', data)
+            respData = data
+            print('not isValidOrExisted!')
+
+        return respData
 
     @classmethod
     def signout(self):
