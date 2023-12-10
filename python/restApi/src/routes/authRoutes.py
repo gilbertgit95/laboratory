@@ -1,21 +1,19 @@
 from flask import Blueprint, request
 from utils.reqHeader import ReqHeader
-from utils.errorHandler import ErrorHandler
+from utils.routerUtils import RouterUtils
 from controllers.authControllers import authController
 
 authRoutes = Blueprint('authRoutes', __name__)
 
 @authRoutes.post('/signin')
-def signinRoute():
-    # get user agent info and ip address
-    ua = ReqHeader.getUAInfo(request)
-    ip = ReqHeader.getReqIP(request)
+@RouterUtils.clientinfoProvider
+def signinRoute(ua, ip):
 
     # get cred info
     username = request.form.get('username')
     password = request.form.get('password')
 
-    @ErrorHandler.wrap
+    @RouterUtils.errorHandler
     def process():
         # raise Exception('Error')
         return authController.signin(username, password, ua, ip)
