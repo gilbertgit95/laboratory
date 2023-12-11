@@ -1,5 +1,4 @@
 from flask import Blueprint, request
-from utils.reqHeader import ReqHeader
 from utils.routerUtils import RouterUtils
 from controllers.authControllers import authController
 
@@ -7,11 +6,14 @@ authRoutes = Blueprint('authRoutes', __name__)
 
 @authRoutes.post('/signin')
 @RouterUtils.clientinfoProvider
-def signinRoute(ua, ip):
+@RouterUtils.userInfoAndAccessProvider
+def signinRoute(ua, ip, user):
 
     # get cred info
     username = request.form.get('username')
     password = request.form.get('password')
+
+    print('!user: ', user)
 
     @RouterUtils.errorHandler
     def process():
@@ -27,7 +29,7 @@ def signoutRoute():
 
     paramData = {
         'param1': request.args.get('param1'),
-        'param2': request.args.get('param2') 
+        'param2': request.args.get('param2')
     }
     bodyData = request.get_json()
     formData = {

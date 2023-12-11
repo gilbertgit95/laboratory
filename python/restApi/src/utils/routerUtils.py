@@ -39,6 +39,12 @@ class RouterUtils:
 
         return wrapper
 
-    staticmethod
+    @staticmethod
     def userInfoAndAccessProvider(func):
-        pass
+        def wrapper(ua, ip):
+            userData = {
+                'name': 'test name'
+            }
+            return func(ua=ua, ip=ip, user=userData)
+
+        return wrapper
