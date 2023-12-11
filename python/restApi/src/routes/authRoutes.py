@@ -1,10 +1,11 @@
 from flask import Blueprint, request
+from utils.config import config
 from utils.routerUtils import RouterUtils
 from controllers.authControllers import authController
 
-authRoutes = Blueprint('authRoutes', __name__)
+authRoutes = Blueprint('authRoutes', __name__, url_prefix=config['RootApiEndpoint'])
 
-@authRoutes.post('/signin')
+@authRoutes.post('signin')
 @RouterUtils.clientinfoProvider
 @RouterUtils.userInfoAndAccessProvider
 def signinRoute(ua, ip, user):
@@ -24,7 +25,7 @@ def signinRoute(ua, ip, user):
 
     return resp, statusCode
 
-@authRoutes.delete('/signout')
+@authRoutes.delete('signout')
 def signoutRoute():
 
     paramData = {
@@ -52,14 +53,14 @@ def signoutRoute():
 
     return authController.signout()
 
-@authRoutes.post('/signup')
+@authRoutes.post('signup')
 def signupRoute():
     return authController.signup()
 
-@authRoutes.post('/forgotPassword')
+@authRoutes.post('forgotPassword')
 def forgotPasswordRoute():
     return authController.forgotPassword()
 
-@authRoutes.put('/resetpassword')
+@authRoutes.put('resetpassword')
 def resetpasswordRoute():
     return authController.resetPassword()
