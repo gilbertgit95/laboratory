@@ -1,5 +1,7 @@
 import uuid
 from utils.datCache import DataCache
+from controllers.userControllers import userController
+from datasource.models.userModel import userModel
 
 class AuthController:
     cache = DataCache(expTime=10)
@@ -7,9 +9,12 @@ class AuthController:
     @classmethod
     def signin(self, username, password, ua, ip):
         # fetch user data
-
+        user = userModel.collection.find_one({'username': username})
         # check if user exist, if not raise 404
+        if not user:
+            raise Exception({'code': 404})
         # check if user exist and user is not disabled, if not raise 423
+        
 
         # if user exist then encrement the user signin limited transaction
         # check if the signin limited transaction is valid, if not then disable the user and raise 423
