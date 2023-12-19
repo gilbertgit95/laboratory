@@ -4,26 +4,6 @@ from ua_parser import user_agent_parser
 class RouterUtils:
 
     @staticmethod
-    def errorHandler(func):
-        def wrapper():
-            resp = None
-            statusCode = 200
-
-            # resp = func()
-            try:
-                resp = func()
-            except Exception as error:
-                print('Error!', error)
-                resp = {
-                    'message': 'Internal Server Error'
-                }
-                statusCode  = 500
-
-            return resp, statusCode
-        
-        return wrapper
-
-    @staticmethod
     def clientinfoProvider(func):
         def wrapper():
             userAgent = request.headers.get('User-Agent')

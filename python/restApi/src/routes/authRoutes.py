@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from utils.config import config
+from utils.error import Error
 from utils.routerUtils import RouterUtils
 from controllers.authControllers import authController
 
@@ -16,7 +17,7 @@ def signinRoute(ua, ip, user):
 
     print('!user: ', user)
 
-    @RouterUtils.errorHandler
+    @Error.errorHandler
     def process():
         # raise Exception('Error')
         return authController.signin(username, password, ua, ip)

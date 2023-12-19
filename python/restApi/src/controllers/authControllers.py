@@ -1,5 +1,6 @@
 import uuid
 from utils.datCache import DataCache
+from utils.error import ReqError
 from controllers.userControllers import userController
 from datasource.models.userModel import userModel
 
@@ -12,7 +13,7 @@ class AuthController:
         user = userModel.collection.find_one({'username': username})
         # check if user exist, if not raise 404
         if not user:
-            raise Exception({'code': 404})
+            raise ReqError({'code': 404, 'message': 'User does not exist'})
         # check if user exist and user is not disabled, if not raise 423
         
 
