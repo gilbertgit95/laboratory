@@ -15,7 +15,7 @@ class AuthController:
         if not user:
             raise ReqError({'code': 404, 'message': 'User does not exist'})
         # check if user exist and user is not disabled, if not raise 423
-        
+
 
         # if user exist then encrement the user signin limited transaction
         # check if the signin limited transaction is valid, if not then disable the user and raise 423

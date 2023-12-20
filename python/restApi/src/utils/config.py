@@ -7,9 +7,9 @@ config = {
     'AppPort': os.getenv('APP_PORT'),
     'AppAdminConfirmKey': os.getenv('APP_ADMIN_CONFIRM_KEY'),
 
-    'DafaultPagination': os.getenv('DEFAULT_PAGINATION'),
-    'DafaultUserLTLimit': os.getenv('DEFAULT_USER_LT_LIMIT'),
-    'DafaultUserLTExpiration': os.getenv('DEFAULT_USER_LT_EXP'),
+    'DafaultPagination': int(os.getenv('DEFAULT_PAGINATION')),
+    'DafaultUserLTLimit': int(os.getenv('DEFAULT_USER_LT_LIMIT')),
+    'DafaultUserLTExpiration': int(os.getenv('DEFAULT_USER_LT_EXP')),
 
     'MongoURI': os.getenv(f'{ appEnv }_MONGO_URI'),
     'DBName': os.getenv(f'{ appEnv }_MONGO_DB_NAME'),
@@ -21,6 +21,6 @@ config = {
     'RootAssetsEndpoint': os.getenv('ROOT_ASSETS_ENDPOINT'),
     'RootApiEndpoint': os.getenv('ROOT_API_ENDPOINT'),
 
-    'JwtExp': os.getenv('JWT_EXPIRATION'),
+    'JwtExp': int(os.getenv('JWT_EXPIRATION')),
     'JwtSecretKey': os.getenv('JWT_SECRET_KEY')
 }
