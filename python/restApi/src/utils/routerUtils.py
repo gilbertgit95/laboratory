@@ -19,7 +19,7 @@ class RouterUtils:
             }
 
             page = int(page) if not page == None else 0
-            pageSize = int(pageSize) if not pageSize == None else config.DafaultPagination
+            pageSize = int(pageSize) if not pageSize == None else config['DafaultPagination']
             items, totalItems = func(page=page, pageSize=pageSize)
             totalPages = math.ceil(totalItems/pageSize)
             hasNextUrl = page < totalPages

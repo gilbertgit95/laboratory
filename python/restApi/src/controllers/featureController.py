@@ -1,19 +1,17 @@
 import uuid
 import json
 from utils.datCache import DataCache
-from datasource.models.userModel import userModel
+from datasource.models.featureModel import featureModel
 
 class FeatureController:
     cache = DataCache(expTime=10)
 
     @classmethod
-    def getMany(self):
-        respData = userModel.collection.find({})
+    def getManyAndCount(self, query = {}, limit=None, skip=0):
+        resp = featureModel.findAndCount(query, limit=limit, skip=skip)
 
-        print(respData[0])
-        # return json.dumps(respData)
         # return respData
-        return respData[0]
+        return resp['items'], resp['count']
     
     @classmethod
     def getOne():

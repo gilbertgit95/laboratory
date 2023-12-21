@@ -12,10 +12,14 @@ featureRoutes = Blueprint('featureRoutes', __name__,  url_prefix=config['RootApi
 def getMany(ua, ip, user):
 
     @Error.errorHandler
-    def process():
+    @RouterUtils.paggination
+    def process(page, pageSize):
         # raise Exception('Error')
+        # print(f'page: {page}', f'pageSize: {pageSize}')
+        limit = pageSize
+        skip = (page - 1) * pageSize
 
-        return featureController.getMany()
+        return featureController.getManyAndCount({}, limit=limit, skip=skip )
 
     resp, statusCode = process()
 
