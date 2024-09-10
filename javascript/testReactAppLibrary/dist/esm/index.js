@@ -1,4 +1,4 @@
-import e from"react";import"./components/smartrating/SmartRating.css";var r,t={};
+import e from"react";var r,t={};
 /**
  * @license React
  * react-jsx-runtime.production.min.js
