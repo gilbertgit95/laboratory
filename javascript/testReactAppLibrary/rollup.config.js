@@ -22,6 +22,7 @@ export default [
         format: "esm",
         sourcemap: true,
       },
+      { file: "dist/types.d.ts", format: "es" }
     ],
     plugins: [
       peerDepsExternal(),
@@ -29,13 +30,14 @@ export default [
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
       terser(),
+      dts.default(),
       postcss(), 
     ],
     external: ["react", "react-dom", /\.css$/],
   },
-  {
-    input: "src/index.ts",
-    output: [{ file: "dist/types.d.ts", format: "es" }],
-    plugins: [dts.default()],
-  },
+  // {
+  //   input: "src/index.ts",
+  //   output: [{ file: "dist/types.d.ts", format: "es" }],
+  //   plugins: [dts.default()],
+  // },
 ];
