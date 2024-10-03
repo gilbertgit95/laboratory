@@ -1,0 +1,57 @@
+{
+    "name": "test-ui-core-a-package",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/joeythelantern/Component-Library.git"
+    },
+    "version": "0.0.2",
+    "description": "A component library for getting people started with easy to re-use components for everyday projects.",
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "rm -rf dist/ && npm run build:esm && npm run build:cjs",
+        "build:esm": "tsc",
+        "build:cjs": "tsc --module CommonJS --outDir dist/cjs"
+    },
+    "author": "The Nerdy Canuck",
+    "license": "MIT",
+    "dependencies": {
+        "@emotion/react": "^11.11.3",
+        "@emotion/styled": "^11.11.0",
+        "@fontsource/roboto": "^5.0.8",
+        "@mui/base": "^5.0.0-beta.31",
+        "@mui/icons-material": "^5.15.3",
+        "@mui/lab": "^5.0.0-alpha.160",
+        "@mui/material": "^5.15.3",
+        "@testing-library/jest-dom": "^5.17.0",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/user-event": "^13.5.0",
+        "@types/jest": "^27.5.2",
+        "@types/lodash": "^4.17.5",
+        "axios": "^1.6.3",
+        "lodash": "^4.17.21",
+        "moment": "^2.30.1",
+        "react-router-dom": "^6.21.1",
+        "react-scripts": "5.0.1",
+        "ua-parser-js": "^1.0.37",
+        "web-vitals": "^2.1.4"
+    },
+    "devDependencies": {
+        "@types/react": "^18.2.20",
+        "@types/react-dom": "^18.2.7",
+        "@types/node": "^16.18.40",
+        "@reduxjs/toolkit": "^2.0.1",
+        "typescript": "^4.9.5",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-redux": "^9.0.4"
+    },
+    "peerDependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-redux": "^9.0.4"
+    }
+}
