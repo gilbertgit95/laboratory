@@ -13,7 +13,7 @@ class Model:
     def findAndCount(self, query = {}, limit=None, skip=0):
         return {
             'count': self.collection.count_documents(query),
-            'items': list(self.collection.find(query, limit=limit, skip=skip))
+            'items': self.collection.find(query, limit=limit, skip=skip)
         }
 
     def insert_many(self, list):

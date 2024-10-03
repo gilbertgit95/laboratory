@@ -11,7 +11,7 @@ class FeatureController:
         resp = featureModel.findAndCount(query, limit=limit, skip=skip)
 
         # return respData
-        return resp['items'], resp['count']
+        return list(resp['items']), resp['count']
     
     @classmethod
     def getOne():
