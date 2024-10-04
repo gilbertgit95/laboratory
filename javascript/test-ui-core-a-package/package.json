@@ -6,15 +6,16 @@
     },
     "version": "0.0.2",
     "description": "A component library for getting people started with easy to re-use components for everyday projects.",
-    "main": "dist/cjs/app.js",
-    "module": "dist/esm/app.js",
+    "main": "dist/cjs/App.js",
+    "module": "dist/esm/App.js",
     "files": [
         "dist"
     ],
     "scripts": {
-        "build": "rm -rf dist/ && npm run build:esm && npm run build:cjs",
+        "build": "rm -rf dist/ && npm run build:esm && npm run build:cjs && npm run copy-files",
         "build:esm": "tsc",
-        "build:cjs": "tsc --module CommonJS --outDir dist/cjs"
+        "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
+        "copy-files": "copyfiles -u 1 src/**/*.html src/**/*.css dist/esm && copyfiles -u 1 src/**/*.html src/**/*.css dist/cjs"
     },
     "author": "The Nerdy Canuck",
     "license": "MIT",
@@ -40,14 +41,16 @@
         "web-vitals": "^2.1.4"
     },
     "devDependencies": {
+        "@reduxjs/toolkit": "^2.0.1",
+        "@types/node": "^16.18.40",
         "@types/react": "^18.2.20",
         "@types/react-dom": "^18.2.7",
-        "@types/node": "^16.18.40",
-        "@reduxjs/toolkit": "^2.0.1",
-        "typescript": "^4.9.5",
+        "copyfiles": "^2.4.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-redux": "^9.0.4"
+        "react-redux": "^9.0.4",
+        "rimraf": "^6.0.1",
+        "typescript": "^4.9.5"
     },
     "peerDependencies": {
         "react": "^18.2.0",
